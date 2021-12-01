@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Student Portal</string>
+    <string name="get_started">Get Started</string>
+    <string name="continue_text">Continue</string>
+    <string name="hint_bracu_id">BRACU ID</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_app_logo">App Logo</string>
+</resources>

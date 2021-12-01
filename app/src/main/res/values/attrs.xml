@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorAppBackground" format="color|reference"/>
+    <attr name="colorAppStatusBar" format="color|reference"/>
+    <attr name="colorAppStatusBarForeground" format="color|reference"/>
+    <attr name="colorBottomNavBackground" format="color|reference"/>
+</resources>

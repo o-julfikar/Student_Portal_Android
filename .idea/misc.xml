@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/Midterm/StudentPortal/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4036458333333333" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/Midterm/StudentPortal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4036458333333333" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/Midterm/StudentPortal/app/src/main/res/layout/activity_identifier.xml" value="0.3875" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/Midterm/StudentPortal/app/src/main/res/layout/activity_main.xml" value="0.3734375" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3587962962962963" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/circle_shadow.xml" value="0.3587962962962963" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/ic_arrow_left.xml" value="0.3587962962962963" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3587962962962963" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/ic_logo.xml" value="0.4036458333333333" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/ic_round_button.xml" value="0.4036458333333333" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/ic_round_edit_text.xml" value="0.4036458333333333" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/drawable/round_bottom_nav_view.xml" value="0.3587962962962963" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_identifier.xml" value="0.3875" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_login.xml" value="0.3875" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_main.xml" value="0.3875" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_register_basic_info.xml" value="0.33" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/activity_register_final.xml" value="0.34444444444444444" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/menu/bottom_nav_items.xml" value="0.34444444444444444" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
