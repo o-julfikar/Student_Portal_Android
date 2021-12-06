@@ -17,5 +17,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorAppStatusBar</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="defaultTextColor">@color/almost_black</item>
+        <item name="colorTableHeader">@color/gray</item>
+        <item name="colorSlotTableHeader">@color/red_bd</item>
+        <item name="colorTableRow">@color/lighter_gray</item>
     </style>
 </resources>

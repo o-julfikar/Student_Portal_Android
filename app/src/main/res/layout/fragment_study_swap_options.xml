@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".swap.StudySwapOptionsFragment"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/tableTeach"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tableLearn"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboCourse"
+            android:layout_marginVertical="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin_small"
+            >
+            <LinearLayout
+                android:id="@+id/layoutTeachHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_table_header"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="@string/teach_header"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding"
+                    android:textColor="?defaultTextColor"
+                    />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTeach"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@id/layoutCboTeachCourse"
+                android:layout_below="@id/layoutTeachHeader"
+                android:background="@drawable/table_body" />
+
+            <FrameLayout
+                android:id="@+id/layoutCboTeachCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/btnTeachAdd"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboTeachCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    android:entries="@array/default_cbo_options"
+                    />
+
+            </FrameLayout>
+
+
+            <Button
+                android:id="@+id/btnTeachAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/add_button_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tableLearn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/tableTeach"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tableSlot"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboCourse"
+            android:layout_marginVertical="@dimen/default_margin"
+            >
+            <LinearLayout
+                android:id="@+id/layoutLearnHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_table_header"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="@string/learn_header"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding"
+                    android:textColor="?defaultTextColor"
+                    />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLearn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@id/layoutCboLearnCourse"
+                android:layout_below="@id/layoutLearnHeader"
+                android:background="@drawable/table_body" />
+
+            <FrameLayout
+                android:id="@+id/layoutCboLearnCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/btnLearnAdd"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboLearnCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    android:entries="@array/default_cbo_options"
+                    />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnLearnAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/add_button_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tableSlot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/tableLearn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboCourse"
+            android:layout_marginVertical="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin_small"
+            android:layout_marginEnd="@dimen/default_margin"
+            >
+            <LinearLayout
+                android:id="@+id/layoutSlotHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_table_header"
+                android:backgroundTint="@color/red_bd"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="@string/slots_header"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSlot"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@id/layoutSlotHeader"
+                android:layout_above="@id/layoutCboSlotDay"
+                android:background="@drawable/table_body"
+                />
+
+            <FrameLayout
+                android:id="@+id/layoutCboSlotDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/layoutCboSlotTime"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboSlotDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    android:entries="@array/default_cbo_options"
+                    android:backgroundTint="@color/red_bd"
+                    />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutCboSlotTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/btnSlotAdd"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboSlotTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    android:entries="@array/default_cbo_options"
+                    android:backgroundTint="@color/red_bd"
+                    />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnSlotAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:backgroundTint="@color/red_bd"
+                android:text="@string/add_button_text"
+                />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/layoutCboCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tableTeach"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSlotFind"
+            android:layout_marginBottom="@dimen/default_margin_small"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:background="@drawable/ic_round_edit_text"
+            >
+
+            <Spinner
+                android:id="@+id/cboCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/default_padding"
+                android:entries="@array/default_cbo_options"
+                />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnSlotFind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCboCourse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginVertical="@dimen/default_margin_small"
+            android:text="@string/find"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

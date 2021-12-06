@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".swap.SectionSwapOptionsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/tableSectionOffer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tableSectionPrefer"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboSection"
+            android:layout_margin="@dimen/default_margin"
+            >
+            <LinearLayout
+                android:id="@+id/layoutSectionOfferHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_table_header"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="@string/offers_header"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding"
+                    android:textColor="?defaultTextColor"
+                    />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSectionOffer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@id/layoutSectionOfferHeader"
+                android:layout_above="@id/layoutCboOfferCourse"
+                android:background="@drawable/table_body"
+                />
+
+            <FrameLayout
+                android:id="@+id/layoutCboOfferCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/layoutCboOfferSection"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboOfferCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/default_cbo_options"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/layoutCboOfferSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/btnSectionOfferAdd"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+                <Spinner
+                    android:id="@+id/cboOfferSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/default_cbo_options"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnSectionOfferAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/add_button_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tableSectionPrefer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/tableSectionOffer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboSection"
+            android:layout_margin="@dimen/default_margin"
+            >
+            <LinearLayout
+                android:id="@+id/layoutSectionPreferHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_table_header"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="@string/prefers_header"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding"
+                    android:textColor="?defaultTextColor"
+                    />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSectionPrefer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@id/layoutSectionPreferHeader"
+                android:layout_above="@id/layoutCboPreferCourse"
+                android:background="@drawable/table_body"
+                />
+
+            <FrameLayout
+                android:id="@+id/layoutCboPreferCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/layoutCboPreferSection"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboPreferCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/default_cbo_options"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutCboPreferSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/btnSectionPreferAdd"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:background="@drawable/ic_round_edit_text"
+                >
+
+                <Spinner
+                    android:id="@+id/cboPreferSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/default_cbo_options"
+                    android:paddingVertical="@dimen/default_padding"
+                    android:paddingStart="@dimen/swap_spinner_padding_start"
+                    android:paddingEnd="@dimen/swap_spinner_padding_end"
+                    />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnSectionPreferAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/add_button_text" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/layoutCboSection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tableSectionOffer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSectionFind"
+            android:layout_marginBottom="@dimen/default_margin_small"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:background="@drawable/ic_round_edit_text"
+            >
+            <Spinner
+                android:id="@+id/cboSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/default_cbo_options"
+                android:paddingVertical="@dimen/default_padding"
+                android:paddingStart="@dimen/swap_spinner_padding_start"
+                android:paddingEnd="@dimen/swap_spinner_padding_end"
+                android:textAlignment="center"
+                />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnSectionFind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCboSection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginVertical="@dimen/default_margin_small"
+            android:text="@string/find"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

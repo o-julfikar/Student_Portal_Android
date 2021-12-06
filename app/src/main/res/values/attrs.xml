@@ -4,4 +4,8 @@
     <attr name="colorAppStatusBar" format="color|reference"/>
     <attr name="colorAppStatusBarForeground" format="color|reference"/>
     <attr name="colorBottomNavBackground" format="color|reference"/>
+    <attr name="colorTableHeader" format="color|reference"/>
+    <attr name="colorSlotTableHeader" format="color|reference"/>
+    <attr name="colorTableRow" format="color|reference"/>
+    <attr name="defaultTextColor" format="color|reference"/>
 </resources>

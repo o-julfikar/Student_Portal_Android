@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:nestedScrollingEnabled="true"
     >
 
     <androidx.cardview.widget.CardView
@@ -13,7 +14,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginVertical="@dimen/default_margin_small"
         app:cardCornerRadius="10dp"
         >
 
@@ -29,8 +31,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/lightest_gray"
-                android:padding="5dp"
+                android:background="@color/lighter_gray"
+                android:padding="10dp"
                 >
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -51,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgPCMore"
                     android:text="Mohammad Zulfikar Ali Mahbub"
-                    android:textSize="12sp"
+                    android:textSize="18sp"
                     android:paddingHorizontal="5dp"
                     android:textColor="@color/almost_black"
                     />
@@ -64,7 +66,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
                     app:layout_constraintRight_toLeftOf="@+id/txtPCPostSemSeparator"
                     android:text="CSE391"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:paddingHorizontal="5dp"
                     />
 
@@ -76,7 +78,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
                     app:layout_constraintEnd_toStartOf="@id/txtPCPostSemester"
                     android:text="-"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     />
 
                 <TextView
@@ -86,7 +88,7 @@
                     app:layout_constraintStart_toEndOf="@id/txtPCPostSemSeparator"
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
                     android:text="Fall 2021"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:paddingHorizontal="5dp"
                     />
 
@@ -97,7 +99,7 @@
                     app:layout_constraintStart_toStartOf="@+id/txtPCPostCourse"
                     app:layout_constraintTop_toBottomOf="@+id/txtPCPostCourse"
                     android:text="Thursday, November 11, 2021 at 7:34 AM"
-                    android:textSize="8sp"
+                    android:textSize="12sp"
                     android:paddingHorizontal="5dp"
                     />
 
@@ -126,8 +128,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutPCHead"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="12sp"
-                android:padding="5dp"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:textColor="@color/almost_black"
+                android:background="@color/white"
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,7 +142,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtPCContent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/lightest_gray"
+                android:background="@color/lighter_gray"
                 android:elevation="10dp"
                 >
 
@@ -149,19 +153,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/layoutPCCommentCardsScroll"
-                    android:padding="5dp"
+                    app:layout_constraintBottom_toTopOf="@id/dividerInteractionHeader"
+                    android:padding="10dp"
                     >
 
                     <TextView
                         android:id="@+id/txtPCReactionCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="11K"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         />
 
                     <ImageView
@@ -193,69 +197,66 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="3.6K"
-                        android:textSize="10sp"
-                        />
-
-                    <View
-                        android:id="@+id/dividerInteractionHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtPCReactionCount"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/Divider.Horizontal"
-                        android:layout_marginTop="5dp"
+                        android:textSize="12sp"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ScrollView
-                    android:id="@+id/layoutPCCommentCardsScroll"
+                <View
+                    android:id="@+id/dividerInteractionHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutPCInteractionHeader"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/linearLayoutCommentCards"
+                    style="@style/Divider.Horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
+
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutCommentCards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutPCInteractionHeader"
+                    app:layout_constraintTop_toBottomOf="@id/dividerInteractionHeader"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutPCNewComment"
+                    android:orientation="vertical"
                     >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewCommentCards"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        >
 
-
-                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
 
 
 
-                </ScrollView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutPCNewComment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutPCCommentCardsScroll"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayoutCommentCards"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBaseline_toBottomOf="parent"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     >
 
                     <Button
                         android:id="@+id/btnPCSubmitComment"
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="Submit"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:padding="0dp"
+                        android:background="@drawable/ic_round_button"
                         />
-
 
                     <EditText
                         android:id="@+id/txtPCNewComment"
@@ -266,7 +267,8 @@
                         app:layout_constraintEnd_toStartOf="@id/btnPCSubmitComment"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:hint="Write something..."
-                        android:textSize="10sp"
+                        android:textSize="14sp"
+                        android:layout_margin="0dp"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
