@@ -127,14 +127,14 @@
                     android:textColor="?defaultTextColor"
                     />
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSectionPrefer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_below="@id/layoutSectionPreferHeader"
                 android:layout_above="@id/layoutCboPreferCourse"
-                android:background="@drawable/table_body"
-                />
+                android:layout_below="@id/layoutSectionPreferHeader"
+                android:background="@drawable/table_body" />
 
             <FrameLayout
                 android:id="@+id/layoutCboPreferCourse"

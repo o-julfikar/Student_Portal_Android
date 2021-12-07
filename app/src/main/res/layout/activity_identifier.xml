@@ -44,6 +44,7 @@
         >
 
         <EditText
+            android:id="@+id/txtBracuId"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="BRACU ID"
@@ -54,6 +55,7 @@
             />
 
         <Button
+            android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="@string/continue_text"

@@ -239,8 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:backgroundTint="@color/red_bd"
-                android:text="@string/add_button_text"
-                />
+                android:text="@string/add_button_text" />
 
         </RelativeLayout>
 
@@ -251,7 +250,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tableTeach"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnSlotFind"
+            app:layout_constraintBottom_toTopOf="@id/btnStudyFind"
             android:layout_marginBottom="@dimen/default_margin_small"
             android:layout_marginHorizontal="@dimen/default_margin"
             android:background="@drawable/ic_round_edit_text"
@@ -268,7 +267,7 @@
         </FrameLayout>
 
         <Button
-            android:id="@+id/btnSlotFind"
+            android:id="@+id/btnStudyFind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

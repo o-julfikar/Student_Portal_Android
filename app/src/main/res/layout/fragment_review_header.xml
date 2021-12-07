@@ -14,13 +14,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/txtReviewAddInstructor"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:hint="Search"
+        android:hint="@string/search_hint"
         android:background="@drawable/ic_round_edit_text"
         android:paddingVertical="2dp"
         android:paddingStart="05dp"
         android:paddingEnd="5dp"
         android:textAlignment="center"
-        />
+        android:inputType="text"
+        android:autofillHints="Faculty" />
 
     <ImageView
         android:layout_width="20dp"
@@ -28,8 +29,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/txtReviewSearch"
         app:layout_constraintBottom_toBottomOf="@id/txtReviewSearch"
-        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="0dp"
         android:src="@drawable/ic_search_outline"
+        android:contentDescription="@string/search_icon_hint"
         />
 
     <Button
@@ -40,9 +43,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Add"
+        android:text="@string/add_button_text"
         android:textSize="13sp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:background="@drawable/ic_round_button"
         android:textAllCaps="false"
         />

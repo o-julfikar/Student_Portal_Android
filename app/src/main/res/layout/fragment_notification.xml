@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".forum.ForumFragment"
-    >
+    tools:context=".notification.NotificationFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPostCards"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 
 </FrameLayout>

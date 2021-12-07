@@ -1,4 +1,13 @@
 <resources>
+    <string-array name="swap_options">
+        <item>Section Swap</item>
+        <item>Study Swap</item>
+    </string-array>
+    <string-array name="default_cbo_options">
+        <item>@string/app_name</item>
+        <item>@string/founder_name</item>
+    </string-array>
+
     <string name="app_name">Student Portal</string>
     <string name="founder_name">Mohammed Julfikar Ali Mahbub</string>
     <string name="get_started">Get Started</string>
@@ -18,22 +27,18 @@
     <string name="read_more">Read More</string>
     <string name="find">Find</string>
     <string name="add_button_text">Add</string>
+    <string name="send_request_button_text">Send Request</string>
     <string name="offers_header">Offers</string>
     <string name="prefers_header">Prefers</string>
     <string name="teach_header">Teach</string>
     <string name="learn_header">Learn</string>
     <string name="slots_header">Available Slots</string>
-
-    <string-array name="swap_options">
-        <item>Section Swap</item>
-        <item>Study Swap</item>
-    </string-array>
-    <string-array name="default_cbo_options">
-        <item>@string/app_name</item>
-        <item>@string/founder_name</item>
-    </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="provider_hint">Provider</string>
     <string name="swap_section_arrow_hint">Provides arrow from left to right</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_text">Default</string>
+    <string name="search_icon_hint">Search icon</string>
+    <string name="notification_read_indicator_hint">Notification read indicator</string>
+    <string name="search_hint">Search</string>
 </resources>

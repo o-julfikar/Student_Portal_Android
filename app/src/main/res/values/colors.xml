@@ -14,4 +14,5 @@
     <color name="student_portal_blue">#FF0F5D88</color>
     <color name="yellow_orange">#FFFC9700</color>
     <color name="red_bd">#FFBD1717</color>
+    <color name="transparent">#00000000</color>
 </resources>
