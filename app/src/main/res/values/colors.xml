@@ -15,4 +15,5 @@
     <color name="yellow_orange">#FFFC9700</color>
     <color name="red_bd">#FFBD1717</color>
     <color name="transparent">#00000000</color>
+    <color name="ic_launcher_background">#DEDEDE</color>
 </resources>
