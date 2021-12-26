@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.account.SessionManager;
 
 public class SwapResultFragment extends Fragment {
 
@@ -33,6 +34,7 @@ public class SwapResultFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        SessionManager.auth(getContext());
         rootView = inflater.inflate(R.layout.fragment_swap_result, container, false);
 
         btnSendRequest = rootView.findViewById(R.id.btnSendRequest);

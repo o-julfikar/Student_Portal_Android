@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.account.ProfileFragment;
+import com.zulfikar.studentportal.account.ProfileHeaderFragment;
 
 public class CommentCard {
     public final int authorId, postId, commentId;
@@ -43,10 +47,34 @@ public class CommentCard {
         btnCCReactionIcon = commentCard.findViewById(R.id.btnCCReactionIcon);
         btnCCCommentIcon = commentCard.findViewById(R.id.btnCCCommentIcon);
 
-        new FetchImage(imgCCUserPhoto, authorPhoto, handler);
+        new FetchImage(imgCCUserPhoto, authorPhoto, handler).start();
         txtCCUserName.setText(authorName);
         txtCCCommentDate.setText(commentDate);
         txtCCContent.setText(commentContent);
+
+        txtCCUserName.setOnClickListener(v -> {
+            if (context instanceof AppCompatActivity) {
+                ProfileHeaderFragment profileHeaderFragment = new ProfileHeaderFragment();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.headerFragmentContainer,
+                        profileHeaderFragment).commit();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.mainFragmentContainer,
+                        new ProfileFragment(authorId, profileHeaderFragment)).commit();
+            }
+        });
+
+        imgCCUserPhoto.setOnClickListener(v -> {
+            if (context instanceof AppCompatActivity) {
+                ProfileHeaderFragment profileHeaderFragment = new ProfileHeaderFragment();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.headerFragmentContainer,
+                        profileHeaderFragment).commit();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.mainFragmentContainer,
+                        new ProfileFragment(authorId, profileHeaderFragment)).commit();
+            }
+        });
 
         return commentCard;
     }

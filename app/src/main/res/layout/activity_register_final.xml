@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterFinalActivity"
+    tools:context=".account.RegisterFinalActivity"
     android:background="?colorAppBackground"
     >
 
@@ -51,14 +51,14 @@
             android:src="@drawable/ic_arrow_back"
             android:layout_centerVertical="true"
             app:tint="@color/student_portal_blue"
-            android:contentDescription="iOS Back Icon"
+            android:contentDescription="@string/ios_back_icon_hint"
             />
 
         <TextView
             android:id="@+id/txtBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"
+            android:text="@string/back_text"
             android:textSize="18sp"
             android:textColor="@color/student_portal_blue"
             android:layout_toEndOf="@+id/imgBack"
@@ -115,8 +115,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/sepImgButtons"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:text="Change"
-                    android:textSize="24dp"
+                    android:text="@string/change_button_text"
+                    android:textSize="@dimen/photo_upload_button_text_size"
                     />
 
                 <View
@@ -138,9 +138,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:text="Remove"
+                    android:text="@string/remove_button_text"
                     android:textColor="@color/red_bd"
-                    android:textSize="24dp"
+                    android:textSize="@dimen/photo_upload_button_text_size"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -161,10 +161,11 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/ic_round_edit_text"
-                    android:hint="Password"
+                    android:hint="@string/hint_password"
                     android:inputType="textPassword"
                     android:textAlignment="center"
                     android:textSize="18sp"
+                    android:autofillHints="password"
                     />
 
                 <EditText
@@ -173,10 +174,11 @@
                     android:layout_height="40dp"
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/ic_round_edit_text"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password_hint"
                     android:inputType="textPassword"
                     android:textAlignment="center"
                     android:textSize="18sp"
+                    android:autofillHints="password"
                     />
 
             </LinearLayout>
@@ -188,12 +190,11 @@
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Sign Up"
-        android:background="@drawable/ic_round_button"
+        android:text="@string/sign_up_button_text"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="20dp"
         />

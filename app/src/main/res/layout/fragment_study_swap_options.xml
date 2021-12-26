@@ -54,7 +54,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboTeachCourse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/btnTeachAdd"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -63,7 +63,7 @@
                 <Spinner
                     android:id="@+id/cboTeachCourse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -122,7 +122,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboLearnCourse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/btnLearnAdd"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -131,7 +131,7 @@
                 <Spinner
                     android:id="@+id/cboLearnCourse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -192,7 +192,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboSlotDay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/layoutCboSlotTime"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -201,7 +201,7 @@
                 <Spinner
                     android:id="@+id/cboSlotDay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -214,7 +214,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboSlotTime"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/btnSlotAdd"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -223,7 +223,7 @@
                 <Spinner
                     android:id="@+id/cboSlotTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -246,7 +246,7 @@
         <FrameLayout
             android:id="@+id/layoutCboCourse"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tableTeach"
             app:layout_constraintEnd_toEndOf="parent"
@@ -259,7 +259,7 @@
             <Spinner
                 android:id="@+id/cboCourse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingVertical="@dimen/default_padding"
                 android:entries="@array/default_cbo_options"
                 />
@@ -273,11 +273,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutCboCourse"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnShowHistory"
             app:layout_constraintVertical_bias="1"
             android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:text="@string/find_and_request"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/btnShowHistory"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnStudyFind"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginVertical="@dimen/default_margin_small"
-            android:text="@string/find"
+            android:text="@string/show_study_swap_history"
+            android:textAllCaps="false"
             />
 
 

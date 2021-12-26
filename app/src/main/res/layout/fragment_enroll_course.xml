@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".account.EnrollCourseFragment"
+    android:layout_marginHorizontal="@dimen/default_margin"
+    >
+        <LinearLayout
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:id="@+id/layoutSectionOfferHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/ic_table_header"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="4"
+                android:text="Enrolled Courses"
+                android:gravity="center"
+                android:padding="@dimen/default_padding"
+                android:textColor="?defaultTextColor"
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEnrolledCourses"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/lblSemester"
+            android:layout_below="@id/layoutSectionOfferHeader"
+            android:background="@drawable/table_body" />
+
+        <TextView
+            android:id="@+id/lblSemester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/cboSemester"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="Semester" />
+
+        <Spinner
+            android:id="@+id/cboSemester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/lblYear"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/semester"
+            />
+
+        <TextView
+            android:id="@+id/lblYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/cboYear"
+            android:text="Year"
+            />
+
+        <Spinner
+            android:id="@+id/cboYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/lblCourse"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/years"
+            />
+
+        <TextView
+            android:id="@+id/lblCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/txtCourse"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/course_code_hint" />
+
+        <EditText
+            android:id="@+id/txtCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnAdd"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:hint="@string/course_code_hint"
+            android:inputType="textCapCharacters"
+            />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/add_button_text"
+            />
+
+</RelativeLayout>

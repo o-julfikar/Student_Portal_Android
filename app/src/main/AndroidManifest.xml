@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zulfikar.studentportal">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,19 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPortal">
         <activity
+            android:name=".account.SessionActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterFinalActivity"
+            android:name=".account.RegisterFinalActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterBasicInfoActivity"
+            android:name=".account.RegisterBasicInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".account.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".IdentifierActivity"
+            android:name=".account.IdentifierActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

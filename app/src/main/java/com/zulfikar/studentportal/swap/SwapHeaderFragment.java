@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.account.SessionManager;
 
 public class SwapHeaderFragment extends Fragment {
 
@@ -29,6 +30,7 @@ public class SwapHeaderFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        SessionManager.auth(getContext());
         rootView = inflater.inflate(R.layout.fragment_swap_header, container, false);
 
         cboSwapOptions = rootView.findViewById(R.id.cboSwapOptions);

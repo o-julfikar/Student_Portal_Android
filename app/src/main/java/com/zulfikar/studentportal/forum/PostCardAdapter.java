@@ -11,13 +11,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.account.ProfileFragment;
+import com.zulfikar.studentportal.account.ProfileHeaderFragment;
+import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
+import com.zulfikar.studentportal.api.Client;
+import com.zulfikar.studentportal.forum.models.PostComments;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCardViewHolder> {
 
@@ -51,9 +62,121 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
         holder.txtPCReactionCount.setText(postCards[position].reactionsCount);
         holder.txtPCCommentCount.setText(postCards[position].commentsCount);
 
-        for (int i = 0; i < 2 && i < postCards[position].commentCards.length; i++) {
-            holder.linearLayoutCommentCards.addView(postCards[position].commentCards[i].getView(context, holder.linearLayoutCommentCards, postCardHandler));
+        JsonPlaceHolderApi jsonPlaceHolderApi = Client.getApi(context);
+        final int postId = postCards[position].postId;
+
+        if ((postCards[position].courseCode.trim() + postCards[position].semesterNameYear.trim()).length() == 0) {
+            String general = "General";
+            holder.txtPCPostSemSeparator.setText(general);
+            holder.txtPCPostSemSeparator.setPadding(
+                    0,
+                    holder.txtPCPostSemSeparator.getPaddingTop(),
+                    holder.txtPCPostSemSeparator.getPaddingRight(),
+                    holder.txtPCPostSemSeparator.getPaddingBottom());
+        } else if (
+                (postCards[position].courseCode.trim().length() == 0) ||
+                (postCards[position].semesterNameYear.trim().length() == 0)) {
+            holder.txtPCPostSemSeparator.setText("");
         }
+
+        holder.txtPCUserName.setOnClickListener(v -> {
+            if (context instanceof AppCompatActivity) {
+                ProfileHeaderFragment profileHeaderFragment = new ProfileHeaderFragment();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.headerFragmentContainer,
+                        profileHeaderFragment).commit();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.mainFragmentContainer,
+                        new ProfileFragment(postCards[position].authorId, profileHeaderFragment)).commit();
+            }
+        });
+
+        holder.imgPCUserPhoto.setOnClickListener(v -> {
+            if (context instanceof AppCompatActivity) {
+                ProfileHeaderFragment profileHeaderFragment = new ProfileHeaderFragment();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.headerFragmentContainer,
+                        profileHeaderFragment).commit();
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                        R.id.mainFragmentContainer,
+                        new ProfileFragment(postCards[position].authorId, profileHeaderFragment)).commit();
+            }
+        });
+
+        holder.btnPCSubmitComment.setOnClickListener(v -> {
+            PostComments.PostComment postComment = new PostComments.PostComment(postId, holder.txtPCNewComment.getText().toString());
+            Call<Boolean> postCommentCall = jsonPlaceHolderApi.createComment(postComment);
+            postCommentCall.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body() != null && response.body()) {
+                            refreshComments(postId, holder, jsonPlaceHolderApi);
+                            holder.txtPCNewComment.setText("");
+                        }
+                    } else {
+                        Toast.makeText(context, "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+        refreshComments(postId, holder, jsonPlaceHolderApi);
+    }
+
+    public void refreshComments(int postId, PostCardViewHolder holder, JsonPlaceHolderApi jsonPlaceHolderApi) {
+        Call<PostComments> commentsCall = jsonPlaceHolderApi.getComments(postId);
+        commentsCall.enqueue(new Callback<PostComments>() {
+            @Override
+            public void onResponse(Call<PostComments> call, Response<PostComments> response) {
+                if (response.isSuccessful()) {
+                    PostComments postComments = response.body();
+                    holder.linearLayoutCommentCards.removeAllViews();
+                    assert postComments != null;
+                    for (PostComments.PostComment postComment : postComments.getComments()) {
+                        CommentCard commentCard = new CommentCard(
+                                postComment.getComment_id(),
+                                postComment.getAuthor_bracu_id(),
+                                postId,
+                                postComment.getAuthor_name(),
+                                postComment.getAuthor_photo(),
+                                postComment.getContent(),
+                                postComment.getDate_created().toString()
+                        );
+                        holder.linearLayoutCommentCards.addView(
+                                commentCard.getView(
+                                        context,
+                                        holder.linearLayoutCommentCards,
+                                        postCardHandler
+                                )
+                        );
+                    }
+                    holder.txtPCCommentCount.setText(String.valueOf(postComments.getCount()));
+                } else {
+                    Toast.makeText(context, "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostComments> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -66,7 +189,7 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
         ShapeableImageView imgPCUserPhoto;
         ImageView imgPCMore, imgPCReactionIcon, imgPCCommentIcon;
         TextView txtPCUserName, txtPCPostCourse, txtPCPostSemester, txtPCDate, txtPCContent,
-                txtPCReactionCount, txtPCCommentCount;
+                txtPCReactionCount, txtPCCommentCount, txtPCPostSemSeparator;
         EditText txtPCNewComment;
         Button btnPCSubmitComment;
         LinearLayout linearLayoutCommentCards;
@@ -81,6 +204,7 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
             imgPCCommentIcon = itemView.findViewById(R.id.imgPCCommentIcon);
             txtPCUserName = itemView.findViewById(R.id.txtPCUserName);
             txtPCPostCourse = itemView.findViewById(R.id.txtPCPostCourse);
+            txtPCPostSemSeparator = itemView.findViewById(R.id.txtPCPostSemSeparator);
             txtPCPostSemester = itemView.findViewById(R.id.txtPCPostSemester);
             txtPCDate = itemView.findViewById(R.id.txtPCDate);
             txtPCContent = itemView.findViewById(R.id.txtPCContent);

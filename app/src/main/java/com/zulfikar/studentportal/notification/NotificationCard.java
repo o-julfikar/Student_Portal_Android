@@ -21,10 +21,10 @@ import java.util.Locale;
 public class NotificationCard {
 
     private final int notificationId;
-    private final Date notiDate, readDate;
+    private final String notiDate, readDate;
     private final String notiMessage, userPhoto;
 
-    public NotificationCard(int notificationId, Date notiDate, Date readDate, String notiMessage, String userPhoto) {
+    public NotificationCard(int notificationId, String notiDate, String readDate, String notiMessage, String userPhoto) {
         this.notificationId = notificationId;
         this.notiDate = notiDate;
         this.readDate = readDate;
@@ -56,11 +56,11 @@ public class NotificationCard {
         return notificationId;
     }
 
-    public Date getNotiDate() {
+    public String getNotiDate() {
         return notiDate;
     }
 
-    public Date getReadDate() {
+    public String getReadDate() {
         return readDate;
     }
 

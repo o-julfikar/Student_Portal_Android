@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
@@ -52,7 +53,7 @@
                     app:layout_constraintStart_toEndOf="@+id/imgPCUserPhoto"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgPCMore"
-                    android:text="Mohammad Zulfikar Ali Mahbub"
+                    android:text=""
                     android:textSize="18sp"
                     android:paddingHorizontal="5dp"
                     android:textColor="@color/almost_black"
@@ -65,9 +66,10 @@
                     app:layout_constraintStart_toStartOf="@id/txtPCUserName"
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
                     app:layout_constraintRight_toLeftOf="@+id/txtPCPostSemSeparator"
-                    android:text="CSE391"
+                    android:text=""
                     android:textSize="14sp"
-                    android:paddingHorizontal="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
                     />
 
                 <TextView
@@ -77,8 +79,9 @@
                     app:layout_constraintStart_toEndOf="@id/txtPCPostCourse"
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
                     app:layout_constraintEnd_toStartOf="@id/txtPCPostSemester"
-                    android:text="-"
+                    android:text="@string/course_semester_separator"
                     android:textSize="14sp"
+                    android:paddingHorizontal="5dp"
                     />
 
                 <TextView
@@ -87,9 +90,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/txtPCPostSemSeparator"
                     app:layout_constraintTop_toBottomOf="@id/txtPCUserName"
-                    android:text="Fall 2021"
+                    android:text=""
                     android:textSize="14sp"
-                    android:paddingHorizontal="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="0dp"
                     />
 
                 <TextView
@@ -98,7 +102,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="@+id/txtPCPostCourse"
                     app:layout_constraintTop_toBottomOf="@+id/txtPCPostCourse"
-                    android:text="Thursday, November 11, 2021 at 7:34 AM"
+                    android:text=""
                     android:textSize="12sp"
                     android:paddingHorizontal="5dp"
                     />
@@ -110,6 +114,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:src="@drawable/ic_morebutton"
+                    android:contentDescription="@string/more_button_hint"
                     />
 
 
@@ -119,12 +124,7 @@
                 android:id="@+id/txtPCContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="সমাজের কাছে হরে যায় আমাদের ইচ্ছে গুলো,
-বাবা মা বুঝবে কবে আমাদেরো কিছু ইচ্ছে ছিলো,
-তাদের চোখ দিয়ে স্বপ্ন দেখতে বলে,
-আমাদেরো চোখ আছে তা বুঝবে তারা কোন কালে?
-স্বপ্ন গুলো এভাবে দুমড়ে মুচড়ে যায়,
-জীবনের শেষ অংশে হতাশা পাই শুধু ঠাঁই।- “Abu Hasnayen Zillanee”"
+                android:text=""
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutPCHead"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,12 +161,12 @@
                         android:id="@+id/txtPCReactionCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="11K"
-                        android:textSize="12sp"
-                        />
+                        tools:ignore="TextContrastCheck" />
 
                     <ImageView
                         android:id="@+id/imgPCReactionIcon"
@@ -177,6 +177,7 @@
                         app:layout_constraintEnd_toStartOf="@id/imgPCCommentIcon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:src="@drawable/ic_reaction"
+                        android:contentDescription="@string/reaction_button_hint"
                         />
 
                     <ImageView
@@ -187,7 +188,9 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:src="@drawable/ic_comment"/>
+                        android:src="@drawable/ic_comment"
+                        android:contentDescription="@string/comment_button_hint"
+                        />
 
                     <TextView
                         android:id="@+id/txtPCCommentCount"
@@ -196,7 +199,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="3.6K"
+                        android:text=""
                         android:textSize="12sp"
                         />
 
@@ -249,13 +252,12 @@
                     <Button
                         android:id="@+id/btnPCSubmitComment"
                         android:layout_width="70dp"
-                        android:layout_height="30dp"
+                        android:layout_height="48dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Submit"
+                        android:text="@string/submit_button_text"
                         android:textSize="12sp"
                         android:padding="0dp"
-                        android:background="@drawable/ic_round_button"
                         />
 
                     <EditText
@@ -266,10 +268,11 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/btnPCSubmitComment"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:hint="Write something..."
+                        android:hint="@string/write_something_hint"
                         android:textSize="14sp"
                         android:layout_margin="0dp"
-                        />
+                        android:inputType="textCapSentences"
+                        android:importantForAutofill="no" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

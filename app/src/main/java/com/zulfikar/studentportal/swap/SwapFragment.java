@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.account.SessionManager;
 
 public class SwapFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class SwapFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        SessionManager.auth(getContext());
         rootView = inflater.inflate(R.layout.fragment_swap, container, false);
 
         swapFragmentContainer = rootView.findViewById(R.id.swapFragmentContainer);

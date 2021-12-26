@@ -15,4 +15,6 @@
     <dimen name="swap_spinner_padding_start">0dp</dimen>
     <dimen name="swap_spinner_padding_end">30dp</dimen>
     <dimen name="margin_large">15dp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="photo_upload_button_text_size">24sp</dimen>
 </resources>

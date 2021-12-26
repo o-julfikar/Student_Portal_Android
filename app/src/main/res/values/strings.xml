@@ -7,9 +7,15 @@
         <item>@string/app_name</item>
         <item>@string/founder_name</item>
     </string-array>
+    <string-array name="semester">
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Fall</item>
+    </string-array>
 
     <string name="app_name">Student Portal</string>
     <string name="founder_name">Mohammed Julfikar Ali Mahbub</string>
+    <string name="founder_email">mohammed.julfikar.ali.mahbub@g.bracu.ac.bd</string>
     <string name="get_started">Get Started</string>
     <string name="continue_text">Continue</string>
     <string name="hint_bracu_id">BRACU ID</string>
@@ -41,4 +47,47 @@
     <string name="search_icon_hint">Search icon</string>
     <string name="notification_read_indicator_hint">Notification read indicator</string>
     <string name="search_hint">Search</string>
+    <string name="created_by_zulfikar">Created by Zulfikar</string>
+    <string name="posts_label">Posts</string>
+    <string name="section_swap_label">Section\nSwaps</string>
+    <string name="study_swap_label">Study\nSwaps</string>
+    <string name="reviews_label">Reviews</string>
+    <string name="edit_profile_button_text">Edit profile</string>
+    <string name="admin_panel_button_text">Admin Panel</string>
+    <string name="logout_button_text">Logout</string>
+    <string name="department_program_label">Department Program</string>
+    <string name="email_label">Email</string>
+    <string name="enrolled_semester_label">Enrolled Semester</string>
+    <string name="enrolled_courses_label">Enrolled Courses</string>
+    <string name="zero_text">0</string>
+    <string name="enroll_course_button_text">Enroll Course</string>
+    <string name="new_post_title_text">New Post</string>
+    <string name="write_something_hint">Write something...</string>
+    <string name="post_button_text">Post</string>
+    <string name="course_text">Course</string>
+    <string name="delete_row_hint">Delete row</string>
+    <string name="course_code_hint">Course Code</string>
+    <string name="course_semester_separator">-</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="more_button_hint">More button</string>
+    <string name="bracu_id_hint">BRACU ID</string>
+    <string name="sign_in_button_text">Sign In</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="date_of_birth_hint">Date of Birth</string>
+    <string name="phone_hint">Phone</string>
+    <string name="next_button_text">Next</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="sign_up_button_text">Sign Up</string>
+    <string name="ios_back_icon_hint">iOS Back Icon</string>
+    <string name="back_text">Back</string>
+    <string name="change_button_text">Change</string>
+    <string name="remove_button_text">Remove</string>
+    <string name="open_in_search_button_text">Open in Search</string>
+    <string name="section_swap_history">Section Swap History</string>
+    <string name="refresh">Refresh</string>
+    <string name="study_swap_history">Study Swap History</string>
+    <string name="swap_status">Swap status</string>
+    <string name="show_study_swap_history">Show History</string>
+    <string name="find_and_request">Find &amp; Request</string>
+    <string name="show_section_swaps_history">Show History</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IdentifierActivity"
+    tools:context=".account.IdentifierActivity"
     android:background="?colorAppBackground"
     >
 
@@ -17,6 +17,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:src="@drawable/ic_logo"
         android:layout_margin="10dp"
+        android:contentDescription="@string/app_name"
         />
 
     <TextView
@@ -47,19 +48,19 @@
             android:id="@+id/txtBracuId"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="BRACU ID"
+            android:hint="@string/bracu_id_hint"
             android:textAlignment="center"
             android:background="@drawable/ic_round_edit_text"
             android:layout_marginVertical="5dp"
             android:textSize="18sp"
-            />
+            android:inputType="number"
+            android:autofillHints="BracuId" />
 
         <Button
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="@string/continue_text"
-            android:background="@drawable/ic_round_button"
             android:layout_marginVertical="5dp"
             />
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".forum.NewPostFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView
+            android:id="@+id/scrollNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutCboEnrolledCourses"
+            android:fillViewport="true"
+            >
+
+            <EditText
+                android:id="@+id/txtNewPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:hint="@string/write_something_hint"
+                android:gravity="top"
+                android:background="@color/white"
+                android:padding="@dimen/default_padding_small"
+                android:importantForAutofill="no"
+                />
+
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/layoutCboEnrolledCourses"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_round_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollNewPost"
+            app:layout_constraintEnd_toStartOf="@id/btnPost"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_marginVertical="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin_small"
+            >
+
+            <Spinner
+                android:id="@+id/cboEnrolledCourses"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/default_padding"
+                android:layout_marginHorizontal="@dimen/default_margin_small"
+                />
+
+        </FrameLayout>
+
+
+        <Button
+            android:id="@+id/btnPost"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginVertical="@dimen/default_margin_small"
+            android:layout_marginHorizontal="@dimen/default_margin_small"
+            app:layout_constraintStart_toEndOf="@id/layoutCboEnrolledCourses"
+            app:layout_constraintTop_toBottomOf="@id/scrollNewPost"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            android:text="@string/post_button_text"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

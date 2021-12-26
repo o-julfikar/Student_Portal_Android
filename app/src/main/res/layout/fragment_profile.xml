@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".account.ProfileFragment"
+    android:background="?colorAppBackground">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layoutHeaderTopLeft"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/layoutHeaderTopMiddle"
+        app:shapeAppearanceOverlay="@style/ProfileHeaderTopCorners"
+        app:cardElevation="0dp"
+        android:layout_marginStart="@dimen/default_margin"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/layoutHeaderPosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblPosts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/posts_label"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/txtPosts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero_text"
+                    android:textSize="@dimen/text_size_smallest"
+                    android:textColor="?defaultTextColor"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutHeaderReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutHeaderPosts"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="bottom"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblReviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reviews_label"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:id="@+id/txtReviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero_text"
+                    android:textSize="@dimen/text_size_smallest"
+                    android:textColor="?defaultTextColor"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutHeaderSectionSwaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/layoutHeaderPosts"
+                android:gravity="end"
+
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblSecSwap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_swap_label"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="end"
+                    android:lines="2"
+                    />
+
+                <TextView
+                    android:id="@+id/txtSecSwap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero_text"
+                    android:textSize="@dimen/text_size_smallest"
+                    android:textColor="?defaultTextColor"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutHeaderStudySwaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutHeaderSectionSwaps"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@id/layoutHeaderReviews"
+                android:gravity="end|bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblStudSwap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/study_swap_label"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/txtStudSwap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero_text"
+                    android:textSize="@dimen/text_size_smallest"
+                    android:textColor="?defaultTextColor"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layoutHeaderBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/layoutHeaderTopLeft"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderTopLeft"
+        app:layout_constraintEnd_toEndOf="@id/layoutHeaderTopRight"
+        app:shapeAppearanceOverlay="@style/ProfileHeaderBottomCorners"
+        app:cardElevation="0dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_padding"
+            android:paddingHorizontal="5dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_label"
+                android:layout_marginTop="@dimen/default_margin"
+                />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?defaultTextColor"
+                />
+
+            <TextView
+                android:id="@+id/lblDepartment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/department_program_label"
+                android:layout_marginTop="@dimen/default_margin"
+                />
+
+            <TextView
+                android:id="@+id/txtProgram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?defaultTextColor"
+                />
+
+            <TextView
+                android:id="@+id/lblEnrolledSemester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enrolled_semester_label"
+                android:layout_marginTop="@dimen/default_margin"
+                />
+
+            <TextView
+                android:id="@+id/txtEnrolledSemester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="?defaultTextColor"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                >
+
+                <TextView
+                    android:id="@+id/lblEnrolledCourses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@+id/btnEnrollCourse"
+                    android:layout_marginBottom="@dimen/default_margin_small"
+                    android:text="@string/enrolled_courses_label" />
+
+                <Button
+                    android:id="@+id/btnEnrollCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="@string/enroll_course_button_text"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_small"
+                    android:visibility="gone"
+                    />
+
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEnrolledCourses"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layoutHeaderTopRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp"
+        app:layout_constraintStart_toEndOf="@id/layoutHeaderTopMiddle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/ProfileHeaderTopCorners"
+        app:cardElevation="0dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="5dp"
+            >
+
+            <Button
+                android:id="@+id/btnEditProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btnAdmin"
+                />
+
+            <Button
+                android:id="@+id/btnAdmin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/yellow_orange"
+                android:text="@string/admin_panel_button_text"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btnLogout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnEditProfile" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/lighter_gray"
+                android:text="@string/logout_button_text"
+                android:textColor="@color/red_bd"
+                android:textSize="@dimen/text_size_small"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnAdmin"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layoutHeaderTopMiddle"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="?colorAppBackground"
+        app:layout_constraintStart_toEndOf="@id/layoutHeaderTopLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/layoutHeaderTopRight"
+        app:layout_constraintBottom_toTopOf="@id/layoutHeaderBottom"
+        android:layout_marginBottom="-10dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="10dp"
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgUserPhoto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/userphoto"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtRole"
+                />
+
+            <TextView
+                android:id="@+id/txtRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgUserPhoto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text=""
+                android:textColor="?defaultTextColor"
+                android:paddingHorizontal="5dp"
+                android:gravity="center"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPostCards"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/default_margin_small"
+        android:visibility="invisible"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

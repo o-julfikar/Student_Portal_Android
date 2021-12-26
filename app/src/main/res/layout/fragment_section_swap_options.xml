@@ -39,19 +39,19 @@
                     android:textColor="?defaultTextColor"
                     />
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSectionOffer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_below="@id/layoutSectionOfferHeader"
                 android:layout_above="@id/layoutCboOfferCourse"
-                android:background="@drawable/table_body"
-                />
+                android:layout_below="@id/layoutSectionOfferHeader"
+                android:background="@drawable/table_body" />
 
             <FrameLayout
                 android:id="@+id/layoutCboOfferCourse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/layoutCboOfferSection"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -60,8 +60,8 @@
                 <Spinner
                     android:id="@+id/cboOfferCourse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/default_cbo_options"
+                    android:layout_height="match_parent"
+
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -73,7 +73,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboOfferSection"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/btnSectionOfferAdd"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -81,8 +81,8 @@
                 <Spinner
                     android:id="@+id/cboOfferSection"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/default_cbo_options"
+                    android:layout_height="match_parent"
+
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -139,7 +139,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboPreferCourse"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/layoutCboPreferSection"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -148,8 +148,8 @@
                 <Spinner
                     android:id="@+id/cboPreferCourse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/default_cbo_options"
+                    android:layout_height="match_parent"
+
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -159,7 +159,7 @@
             <FrameLayout
                 android:id="@+id/layoutCboPreferSection"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_above="@id/btnSectionPreferAdd"
                 android:layout_marginTop="@dimen/default_margin_small"
                 android:background="@drawable/ic_round_edit_text"
@@ -168,8 +168,8 @@
                 <Spinner
                     android:id="@+id/cboPreferSection"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/default_cbo_options"
+                    android:layout_height="match_parent"
+
                     android:paddingVertical="@dimen/default_padding"
                     android:paddingStart="@dimen/swap_spinner_padding_start"
                     android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -189,7 +189,7 @@
         <FrameLayout
             android:id="@+id/layoutCboSection"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tableSectionOffer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,8 +201,8 @@
             <Spinner
                 android:id="@+id/cboSection"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/default_cbo_options"
+                android:layout_height="match_parent"
+
                 android:paddingVertical="@dimen/default_padding"
                 android:paddingStart="@dimen/swap_spinner_padding_start"
                 android:paddingEnd="@dimen/swap_spinner_padding_end"
@@ -218,11 +218,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutCboSection"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnShowHistory"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:text="@string/find_and_request"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/btnShowHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSectionFind"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1"
             android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginVertical="@dimen/default_margin_small"
-            android:text="@string/find"
+            android:text="@string/show_section_swaps_history"
+            android:textAllCaps="false"
             />
 
 
