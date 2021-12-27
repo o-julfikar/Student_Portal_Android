@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +29,6 @@ import com.zulfikar.studentportal.swap.models.UserOffers;
 import com.zulfikar.studentportal.swap.models.UserPrefers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,13 +41,25 @@ public class SectionSwapOptionsFragment extends Fragment {
     RecyclerView rvSectionOffer, rvSectionPrefer;
     Spinner cboOfferCourse, cboOfferSection, cboPreferCourse, cboPreferSection, cboSection;
     Button btnSectionOfferAdd, btnSectionPreferAdd, btnSectionFind, btnShowHistory;
+    JsonPlaceHolderApi jsonPlaceHolderApi;
+    Call<List<String>>
+            getUserOffersCall,
+            getUserPrefersCall,
+            getCourseCall;
+    Call<Boolean>
+            postUserOffersCall,
+            postUserPrefersCall,
+            deleteUserOffersCall,
+            deleteUserPrefersCall;
+
+    Call<CourseSection> getCourseSectionCall;
 
     View rootView;
 
     String TAG = "SectionSwapOptionsFragment";
 
     public SectionSwapOptionsFragment() {
-        // Required empty public constructor
+        jsonPlaceHolderApi = Client.getApi(getContext());
     }
 
     @Override
@@ -67,66 +79,13 @@ public class SectionSwapOptionsFragment extends Fragment {
         btnSectionFind = rootView.findViewById(R.id.btnSectionFind);
         btnShowHistory = rootView.findViewById(R.id.btnShowHistory);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = Client.getApi(getContext());
-        Call<List<String>> userOffersCall = jsonPlaceHolderApi.getOffers();
-        Call<List<String>> userPrefersCall = jsonPlaceHolderApi.getPrefers();
-        Call<List<String>> courseCall = jsonPlaceHolderApi.getCourse();
-
-        userOffersCall.enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                if (response.isSuccessful()) {
-                    List<String> userOffers = response.body();
-                    if (userOffers != null) {
-                        ArrayList<String> offersArrayList = new ArrayList<>(userOffers);
-                        UserOffersAdapter offersAdapter = new UserOffersAdapter(getContext(), offersArrayList);
-                        rvSectionOffer.setAdapter(offersAdapter);
-                        rvSectionOffer.setLayoutManager(new LinearLayoutManager(getContext()));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-                Log.e(TAG, t.getMessage() );
-            }
-        });
-
-        userPrefersCall.enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                if (response.isSuccessful()) {
-                    List<String> userPrefers = response.body();
-                    if (userPrefers != null) {
-                        ArrayList<String> prefersArrayList = new ArrayList<>(userPrefers);
-                        UserPrefersAdapter userPrefersAdapter = new UserPrefersAdapter(getContext(), prefersArrayList);
-                        rvSectionPrefer.setAdapter(userPrefersAdapter);
-                        rvSectionPrefer.setLayoutManager(new LinearLayoutManager(getContext()));
-                        ArrayList<String> prefersList = new ArrayList<>(Collections.singletonList("Select a preferred course"));
-                        prefersList.addAll(prefersArrayList);
-                        cboSection.setAdapter(
-                                new ArrayAdapter<String>(
-                                        getContext(),
-                                        R.layout.support_simple_spinner_dropdown_item,
-                                        prefersList
-                                ));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-
-            }
-        });
-
-        courseCall.enqueue(new Callback<List<String>>() {
+        getCourseCall = jsonPlaceHolderApi.getCourse();
+        getCourseCall.enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                 if (response.isSuccessful()) {
 
                     if (response.body() != null) {
-//                        Log.e(TAG, "onResponse: " + course.getCourseCode().toString());
                         List<String> course = new ArrayList<>(Collections.singletonList("Select a course"));
                         course.addAll(response.body());
                         ArrayAdapter<String> courseOfferAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, course);
@@ -175,6 +134,64 @@ public class SectionSwapOptionsFragment extends Fragment {
             }
         });
 
+        btnSectionOfferAdd.setOnClickListener(v -> {
+            if (!verifySelection("Please select an offer course and section first.",
+                    cboOfferCourse, cboOfferSection)) {
+                return;
+            }
+            UserOffers userOffer = new UserOffers(
+                    getCboText(cboOfferCourse),
+                    getCboText(cboOfferSection));
+
+            postUserOffersCall = jsonPlaceHolderApi.postUserOffer(userOffer);
+            postUserOffersCall.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        if (response.body()) {
+                            loadOffers();
+                        } else {
+                            showToast("Failed to add the offer. Please try again later");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                }
+            });
+        });
+
+        btnSectionPreferAdd.setOnClickListener(v -> {
+            if (!verifySelection("Please select a prefer course and section first.",
+                    cboPreferCourse, cboPreferSection)) {
+                return;
+            }
+            UserPrefers userPrefer = new UserPrefers(
+                    getCboText(cboPreferCourse),
+                    getCboText(cboPreferSection)
+            );
+            postUserPrefersCall = jsonPlaceHolderApi.postUserPrefer(userPrefer);
+            postUserPrefersCall.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        if (response.body()) {
+                            loadPrefers();
+                        } else {
+                            showToast("Failed to add the selected preferred course section. " +
+                                    "Please try again later.");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                }
+            });
+        });
 
         btnSectionFindOnClick();
         btnShowHistory.setOnClickListener(v -> {
@@ -185,13 +202,142 @@ public class SectionSwapOptionsFragment extends Fragment {
                     .commit();
         });
 
+        loadOffers();
+        loadPrefers();
+
         return rootView;
     }
 
+    private String getCboText(Spinner spinner) {
+        Object selectedItem = spinner.getSelectedItem();
+        if (selectedItem instanceof String) return (String) selectedItem;
+        else if (selectedItem instanceof TextView) return ((TextView) spinner.getSelectedItem()).getText().toString();
+        return "";
+    }
+
+    private boolean verifySelection(String msg, Spinner ...spinners) {
+        for (Spinner spinner : spinners) {
+            if (spinner.getSelectedItemPosition() == 0) {
+                showToast(msg);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    private void loadOffers() {
+        getUserOffersCall = jsonPlaceHolderApi.getOffers();
+        getUserOffersCall.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    List<String> userOffers = response.body();
+                    if (userOffers != null) {
+                        ArrayList<String> offersArrayList = new ArrayList<>(userOffers);
+                        UserOffersAdapter offersAdapter = new UserOffersAdapter(getContext(),
+                                offersArrayList,
+                                SectionSwapOptionsFragment.this);
+                        rvSectionOffer.setAdapter(offersAdapter);
+                        rvSectionOffer.setLayoutManager(new LinearLayoutManager(getContext()));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    private void loadPrefers() {
+        getUserPrefersCall = jsonPlaceHolderApi.getPrefers();
+        getUserPrefersCall.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    List<String> userPrefers = response.body();
+                    if (userPrefers != null) {
+                        ArrayList<String> prefersArrayList = new ArrayList<>(userPrefers);
+                        UserPrefersAdapter userPrefersAdapter = new UserPrefersAdapter(
+                                getContext(),
+                                prefersArrayList,
+                                SectionSwapOptionsFragment.this);
+                        rvSectionPrefer.setAdapter(userPrefersAdapter);
+                        rvSectionPrefer.setLayoutManager(new LinearLayoutManager(getContext()));
+                        ArrayList<String> prefersList = new ArrayList<>(Collections.singletonList("Select a preferred course"));
+                        prefersList.addAll(prefersArrayList);
+                        cboSection.setAdapter(
+                                new ArrayAdapter<String>(
+                                        getContext(),
+                                        R.layout.support_simple_spinner_dropdown_item,
+                                        prefersList
+                                ));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void deleteOffer(String courseCode, String sectionNumber) {
+        UserOffers userOffer = new UserOffers(courseCode, sectionNumber);
+        deleteUserOffersCall = jsonPlaceHolderApi.deleteUserOffer(userOffer);
+        deleteUserOffersCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body()) {
+                        loadOffers();
+                    } else {
+                        showToast("Failed to delete the offer at the moment. " +
+                                "Please try again later.");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void deletePrefer(String courseCode, String sectionNumber) {
+        UserPrefers userPrefer = new UserPrefers(courseCode, sectionNumber);
+        deleteUserPrefersCall = jsonPlaceHolderApi.deleteUserPrefer(userPrefer);
+        deleteUserPrefersCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body()) {
+                        loadPrefers();
+                    } else {
+                        showToast("Failed to delete the prefer at the moment. " +
+                                "Please try again later.");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
     private void onCourseSelected(Spinner cboSection, String courseCode) {
-        JsonPlaceHolderApi jsonPlaceHolderApi = Client.getApi(getContext());
-        Call<CourseSection> courseSectionCall = jsonPlaceHolderApi.getCourseSection(courseCode);
-        courseSectionCall.enqueue(new Callback<CourseSection>() {
+        getCourseSectionCall = jsonPlaceHolderApi.getCourseSection(courseCode);
+        getCourseSectionCall.enqueue(new Callback<CourseSection>() {
             @Override
             public void onResponse(Call<CourseSection> call, Response<CourseSection> response) {
                 if (response.isSuccessful()) {
@@ -222,8 +368,8 @@ public class SectionSwapOptionsFragment extends Fragment {
     private void onCourseDefaultSelected(Spinner cboSection) {
         cboSection.setAdapter(
                 new ArrayAdapter<String>(getContext(),
-                R.layout.support_simple_spinner_dropdown_item,
-                Collections.singletonList("Select a section")));
+                        R.layout.support_simple_spinner_dropdown_item,
+                        Collections.singletonList("Select a section")));
     }
 
     public void btnSectionFindOnClick() {
@@ -236,7 +382,7 @@ public class SectionSwapOptionsFragment extends Fragment {
 
         SectionSwapCardAdapter sectionSwapCardAdapter = new SectionSwapCardAdapter(getContext(), swapCards);
 
-        Fragment swapResultFragment = SwapResultFragment.newInstance(sectionSwapCardAdapter);
+//        Fragment swapResultFragment = SwapResultFragment.newInstance(sectionSwapCardAdapter);
 
         btnSectionFind.setOnClickListener(v -> {
 //            SectionSwapOptionsFragment.this.requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.swapFragmentContainer, swapResultFragment).commit()

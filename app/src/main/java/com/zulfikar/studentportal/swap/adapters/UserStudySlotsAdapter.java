@@ -11,17 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.swap.StudySwapOptionsFragment;
 
 import java.util.ArrayList;
 
 public class UserStudySlotsAdapter extends RecyclerView.Adapter<UserStudySlotsAdapter.UserStudySlotsViewHolder> {
 
-    Context context;
     ArrayList<String> studySlots;
+    Context context;
+    StudySwapOptionsFragment studySwapOptionsFragment;
 
-    public UserStudySlotsAdapter(Context context, ArrayList<String> studySlots) {
+    public UserStudySlotsAdapter(Context context, ArrayList<String> studySlots,
+                                 StudySwapOptionsFragment studySwapOptionsFragment) {
         this.context = context;
         this.studySlots = studySlots;
+        this.studySwapOptionsFragment = studySwapOptionsFragment;
     }
 
     @NonNull
@@ -34,6 +38,12 @@ public class UserStudySlotsAdapter extends RecyclerView.Adapter<UserStudySlotsAd
     @Override
     public void onBindViewHolder(@NonNull UserStudySlotsViewHolder holder, int position) {
         holder.txtRow.setText(studySlots.get(position));
+        holder.imgDelete.setOnClickListener(v -> {
+            String[] dayTime = studySlots.get(position).split(" \\| ");
+            String day = dayTime[0];
+            String time = dayTime[1];
+            studySwapOptionsFragment.deleteStudySlot(day, time);
+        });
     }
 
     @Override

@@ -15,8 +15,11 @@ import com.zulfikar.studentportal.swap.models.SecSwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.SecSwapRequest;
 import com.zulfikar.studentportal.swap.models.StudySwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.StudySwapRequest;
+import com.zulfikar.studentportal.swap.models.UserLearns;
 import com.zulfikar.studentportal.swap.models.UserOffers;
 import com.zulfikar.studentportal.swap.models.UserPrefers;
+import com.zulfikar.studentportal.swap.models.UserStudySlots;
+import com.zulfikar.studentportal.swap.models.UserTeaches;
 
 import java.util.List;
 import java.util.Map;
@@ -118,4 +121,34 @@ public interface JsonPlaceHolderApi {
 
     @POST(URL.createComment)
     Call<Boolean> createComment(@Body PostComments.PostComment postComment);
+
+    @POST(URL.postUserOffers)
+    Call<Boolean> postUserOffer(@Body UserOffers userOffer);
+
+    @POST(URL.postUserPrefers)
+    Call<Boolean> postUserPrefer(@Body UserPrefers userPrefer);
+
+    @POST(URL.postUserStudySlots)
+    Call<Boolean> postUserStudySlot(@Body UserStudySlots userStudySlot);
+
+    @POST(URL.postUserTeaches)
+    Call<Boolean> postUserTeach(@Body UserTeaches userTeach);
+
+    @POST(URL.postUserLearns)
+    Call<Boolean> postUserLearn(@Body UserLearns userLearn);
+
+    @POST(URL.deleteUserOffers)
+    Call<Boolean> deleteUserOffer(@Body UserOffers userOffer);
+
+    @POST(URL.deleteUserPrefers)
+    Call<Boolean> deleteUserPrefer(@Body UserPrefers userPrefer);
+
+    @POST(URL.deleteUserStudySlots)
+    Call<Boolean> deleteUserStudySlot(@Body UserStudySlots userStudySlot);
+
+    @POST(URL.deleteUserTeaches)
+    Call<Boolean> deleteUserTeach(@Body UserTeaches userTeach);
+
+    @POST(URL.deleteUserLearns)
+    Call<Boolean> deleteUserLearn(@Body UserLearns userLearn);
 }

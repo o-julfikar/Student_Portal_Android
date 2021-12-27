@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public class SecSwapCardInfoModel {
+    public static final int DECLINED = -1, PENDING = 0, APPROVED = 1;
+
     @SerializedName("sec_swap_request_id")
     private int requestId;
     @SerializedName("sec_swap_request_creator_bracu_id")
@@ -60,59 +62,60 @@ public class SecSwapCardInfoModel {
         return cards;
     }
 
-    private static class SecSwapCardModel {
+    public static class SecSwapCardModel {
+        @SerializedName("id")
         private int id;
-        @SerializedName("teacher_bracu_id")
-        private int teacherBracuId;
-        @SerializedName("teacher_name")
-        private String teacherName;
-        @SerializedName("teacher_photo")
-        private String teacherPhoto;
-        @SerializedName("learner_bracu_id")
-        private int learnerBracuId;
-        @SerializedName("learner_name")
-        private String learnerName;
-        @SerializedName("learner_photo")
-        private String learnerPhoto;
+        @SerializedName("provider_bracu_id")
+        private int providerBracuId;
+        @SerializedName("provider_name")
+        private String providerName;
+        @SerializedName("provider_photo")
+        private String providerPhoto;
+        @SerializedName("recipient_bracu_id")
+        private int recipientBracuId;
+        @SerializedName("recipient_name")
+        private String recipientName;
+        @SerializedName("recipient_photo")
+        private String recipientPhoto;
         @SerializedName("course_code")
         private String courseCode;
-        @SerializedName("sec_slot")
-        private String secSlot;
+        @SerializedName("section_number")
+        private int sectionNumber;
 
         public int getId() {
             return id;
         }
 
-        public int getTeacherBracuId() {
-            return teacherBracuId;
+        public int getProviderBracuId() {
+            return providerBracuId;
         }
 
-        public String getTeacherName() {
-            return teacherName;
+        public String getProviderName() {
+            return providerName;
         }
 
-        public String getTeacherPhoto() {
-            return teacherPhoto;
+        public String getProviderPhoto() {
+            return providerPhoto;
         }
 
-        public int getLearnerBracuId() {
-            return learnerBracuId;
+        public int getRecipientBracuId() {
+            return recipientBracuId;
         }
 
-        public String getLearnerName() {
-            return learnerName;
+        public String getRecipientName() {
+            return recipientName;
         }
 
-        public String getLearnerPhoto() {
-            return learnerPhoto;
+        public String getRecipientPhoto() {
+            return recipientPhoto;
         }
 
         public String getCourseCode() {
             return courseCode;
         }
 
-        public String getSecSlot() {
-            return secSlot;
+        public int getSectionNumber() {
+            return sectionNumber;
         }
     }
 }

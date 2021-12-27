@@ -11,17 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.swap.StudySwapOptionsFragment;
 
 import java.util.ArrayList;
 
 public class UserLearnsAdapter extends RecyclerView.Adapter<UserLearnsAdapter.UserLearnsViewHolder> {
 
-    Context context;
     ArrayList<String> userLearns;
+    Context context;
+    StudySwapOptionsFragment studySwapOptionsFragment;
 
-    public UserLearnsAdapter(Context context, ArrayList<String> userLearns) {
+    public UserLearnsAdapter(Context context, ArrayList<String> userLearns,
+                             StudySwapOptionsFragment studySwapOptionsFragment) {
         this.context = context;
         this.userLearns = userLearns;
+        this.studySwapOptionsFragment = studySwapOptionsFragment;
     }
 
     @NonNull
@@ -34,6 +38,9 @@ public class UserLearnsAdapter extends RecyclerView.Adapter<UserLearnsAdapter.Us
     @Override
     public void onBindViewHolder(@NonNull UserLearnsViewHolder holder, int position) {
         holder.txtRow.setText(userLearns.get(position));
+        holder.imgDelete.setOnClickListener(v -> {
+            studySwapOptionsFragment.deleteLearnCourse(userLearns.get(position));
+        });
     }
 
     @Override

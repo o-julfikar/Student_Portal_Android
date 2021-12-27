@@ -39,6 +39,7 @@
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_notification.xml" value="0.3814814814814815" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_notification_group.xml" value="0.3875" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_post.xml" value="0.3624382207578254" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_sneak_review.xml" value="0.225" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_study_swap_history_row.xml" value="0.3875" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_swap_section.xml" value="0.34444444444444444" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/card_swap_study.xml" value="0.34444444444444444" />
@@ -60,7 +61,7 @@
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_sec_swap_history.xml" value="0.3875" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_section_swap_options.xml" value="0.33972602739726027" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_study_swap_history.xml" value="0.3734375" />
-        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_study_swap_options.xml" value="0.33194444444444443" />
+        <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_study_swap_options.xml" value="0.28694404591104733" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_swap.xml" value="0.34444444444444444" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_swap_header.xml" value="0.33194444444444443" />
         <entry key="..\:/gDrive/BRACU/03Fall/Fall2021/CSE489/StudentPortal/app/src/main/res/layout/fragment_swap_result.xml" value="0.3734375" />

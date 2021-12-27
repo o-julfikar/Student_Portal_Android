@@ -60,7 +60,8 @@ public class SecSwapHistoryFragment extends Fragment {
                     ArrayList<SecSwapRequest> secSwapRequests = new ArrayList<>(response.body());
                     SecSwapHistoryRowAdapter secSwapHistoryRowAdapter = new SecSwapHistoryRowAdapter(
                             getContext(),
-                            secSwapRequests
+                            secSwapRequests,
+                            SecSwapHistoryFragment.this
                     );
                     rvSectionSwapHistory.setAdapter(secSwapHistoryRowAdapter);
                     rvSectionSwapHistory.setLayoutManager(new LinearLayoutManager(getContext()));

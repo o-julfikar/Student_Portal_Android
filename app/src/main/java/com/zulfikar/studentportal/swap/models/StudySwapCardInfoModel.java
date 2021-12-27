@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public class StudySwapCardInfoModel {
+    public static final int DECLINED = -1, PENDING = 0, APPROVED = 1;
+
     @SerializedName("study_swap_request_id")
     private int requestId;
     @SerializedName("study_swap_request_creator_bracu_id")

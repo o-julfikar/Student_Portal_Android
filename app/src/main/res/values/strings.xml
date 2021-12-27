@@ -90,4 +90,10 @@
     <string name="show_study_swap_history">Show History</string>
     <string name="find_and_request">Find &amp; Request</string>
     <string name="show_section_swaps_history">Show History</string>
+    <string name="total_swaps_required">Total swaps required:</string>
+    <string name="created_on">Created on:</string>
+    <string name="creator">Creator:</string>
+    <string name="approved">Approved</string>
+    <string name="declined">Declined</string>
+    <string name="accepted">Accepted</string>
 </resources>

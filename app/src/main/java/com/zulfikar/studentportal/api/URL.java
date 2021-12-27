@@ -1,8 +1,8 @@
 package com.zulfikar.studentportal.api;
 
 public class URL {
-//    public static final String baseURL = "http://192.168.9.48:8000/";
-    public static final String baseURL = "http://10.0.2.2:8000/";
+    public static final String baseURL = "http://192.168.9.48:8000/";
+//    public static final String baseURL = "http://10.0.2.2:8000/";
 //    public static final String baseURL = "https://fa6817fac791c7.localhost.run/";
     public static final String auth = "user/auth/";
     public static final String identifyUser = "user/identify/";
@@ -39,7 +39,7 @@ public class URL {
 
     // Swap - Prefer
     public static final String getUserPrefers = "swap/section/prefer/get";
-    public static final String postUserPrefers = "swap/section/prefer/create";
+    public static final String postUserPrefers = "swap/section/prefer/post";
     public static final String deleteUserPrefers = "swap/section/prefer/delete";
 
     // Swap - Teach
@@ -48,9 +48,9 @@ public class URL {
     public static final String deleteUserTeaches = "swap/study/teach/delete";
 
     // Swap - Learn
-    public static final String getUserLearns = "swap/study/teach/get";
-    public static final String postUserLearns = "swap/study/teach/post";
-    public static final String deleteUserLearns = "swap/study/teach/delete";
+    public static final String getUserLearns = "swap/study/learn/get";
+    public static final String postUserLearns = "swap/study/learn/post";
+    public static final String deleteUserLearns = "swap/study/learn/delete";
 
     // Swap - StudySlot
     public static final String getUserStudySlots = "swap/study/slot/get";

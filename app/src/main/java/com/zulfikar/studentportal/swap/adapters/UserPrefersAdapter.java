@@ -11,17 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.swap.SectionSwapOptionsFragment;
 
 import java.util.ArrayList;
 
 public class UserPrefersAdapter extends RecyclerView.Adapter<UserPrefersAdapter.UsersPrefersViewHolder> {
 
-    Context context;
     ArrayList<String> prefers;
+    Context context;
+    SectionSwapOptionsFragment sectionSwapOptionsFragment;
 
-    public UserPrefersAdapter(Context context, ArrayList<String> prefers) {
+    public UserPrefersAdapter(Context context, ArrayList<String> prefers,
+                              SectionSwapOptionsFragment sectionSwapOptionsFragment) {
         this.context = context;
         this.prefers = prefers;
+        this.sectionSwapOptionsFragment = sectionSwapOptionsFragment;
     }
 
     @Override
@@ -39,6 +43,13 @@ public class UserPrefersAdapter extends RecyclerView.Adapter<UserPrefersAdapter.
     @Override
     public void onBindViewHolder(@NonNull UsersPrefersViewHolder holder, int position) {
         holder.txtRow.setText(prefers.get(position));
+        holder.imgDelete.setOnClickListener(v -> {
+            String[] courseCodeSection = prefers.get(position).split(" ");
+            String courseCode = courseCodeSection[0];
+            String section = courseCodeSection[1];
+            section = section.substring(1, section.length() - 1);
+            sectionSwapOptionsFragment.deletePrefer(courseCode, section);
+        });
     }
 
     @Override

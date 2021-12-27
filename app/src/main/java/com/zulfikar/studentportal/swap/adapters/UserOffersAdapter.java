@@ -11,17 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.swap.SectionSwapOptionsFragment;
 
 import java.util.ArrayList;
 
 public class UserOffersAdapter extends RecyclerView.Adapter<UserOffersAdapter.UserOfferViewHolder> {
 
-    Context context;
-    ArrayList<String> offers;
 
-    public UserOffersAdapter(Context context, ArrayList<String> offers) {
+    ArrayList<String> offers;
+    Context context;
+    SectionSwapOptionsFragment sectionSwapOptionsFragment;
+
+    public UserOffersAdapter(Context context, ArrayList<String> offers,
+                             SectionSwapOptionsFragment sectionSwapOptionsFragment) {
         this.context = context;
         this.offers = offers;
+        this.sectionSwapOptionsFragment = sectionSwapOptionsFragment;
+
     }
 
 
@@ -40,6 +46,13 @@ public class UserOffersAdapter extends RecyclerView.Adapter<UserOffersAdapter.Us
     @Override
     public void onBindViewHolder(@NonNull UserOfferViewHolder holder, int position) {
         holder.txtRow.setText(offers.get(position));
+        holder.imgDelete.setOnClickListener(v -> {
+            String[] courseCodeSection = offers.get(position).split(" ");
+            String courseCode = courseCodeSection[0];
+            String section = courseCodeSection[1];
+            section = section.substring(1, section.length() - 1);
+            sectionSwapOptionsFragment.deleteOffer(courseCode, section);
+        });
     }
 
     @Override
