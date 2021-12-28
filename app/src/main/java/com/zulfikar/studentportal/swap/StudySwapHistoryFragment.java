@@ -62,7 +62,8 @@ public class StudySwapHistoryFragment extends Fragment {
                     ArrayList<StudySwapRequest> studySwapRequests = new ArrayList<>(response.body());
                     StudySwapHistoryRowAdapter studySwapHistoryRowAdapter = new StudySwapHistoryRowAdapter(
                             getContext(),
-                            studySwapRequests
+                            studySwapRequests,
+                            StudySwapHistoryFragment.this
                     );
                     rvStudySwapHistory.setAdapter(studySwapHistoryRowAdapter);
                     rvStudySwapHistory.setLayoutManager(new LinearLayoutManager(getContext()));

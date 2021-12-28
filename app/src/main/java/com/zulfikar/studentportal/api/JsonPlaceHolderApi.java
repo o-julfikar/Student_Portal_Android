@@ -15,6 +15,7 @@ import com.zulfikar.studentportal.swap.models.SecSwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.SecSwapRequest;
 import com.zulfikar.studentportal.swap.models.StudySwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.StudySwapRequest;
+import com.zulfikar.studentportal.swap.models.SwapActionModel;
 import com.zulfikar.studentportal.swap.models.UserLearns;
 import com.zulfikar.studentportal.swap.models.UserOffers;
 import com.zulfikar.studentportal.swap.models.UserPrefers;
@@ -52,6 +53,9 @@ public interface JsonPlaceHolderApi {
 
     @GET(URL.getPostByUser)
     Call<List<Post>> getPostByUser(@Path("bracu_id") int bracu_id);
+
+    @GET(URL.getPostById)
+    Call<Post> getPostById(@Path("post_id") int post_id);
 
     @GET(URL.getComments)
     Call<PostComments> getComments(@Path("post_id") int post_id);
@@ -151,4 +155,18 @@ public interface JsonPlaceHolderApi {
 
     @POST(URL.deleteUserLearns)
     Call<Boolean> deleteUserLearn(@Body UserLearns userLearn);
+
+    @POST(URL.postSecSwapRequest)
+    Call<Object> postSecSwapRequest(@Body UserPrefers userPrefer);
+
+    @POST(URL.postStudySwapRequest)
+    Call<Object> postStudySwapRequest(@Body UserLearns userLearn);
+
+    @POST(URL.postSecSwapRequestAction)
+    Call<Boolean> postSecSwapRequestAction(@Path("sec_swap_request_id") int secSwapReqId,
+                                           @Body SwapActionModel swapActionModel);
+
+    @POST(URL.postStudySwapRequestAction)
+    Call<Boolean> postStudySwapRequestAction(@Path("study_swap_request_id") int studSwapReqId,
+                                             @Body SwapActionModel swapActionModel);
 }

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.Utility;
 
 
 public class CommentCardListAdapter extends ArrayAdapter<CommentCard> {
@@ -49,7 +50,7 @@ public class CommentCardListAdapter extends ArrayAdapter<CommentCard> {
 
         new FetchImage(imgCCUserPhoto, commentCard.authorPhoto, commentCardListHandler);
         txtCCUserName.setText(commentCard.authorName);
-        txtCCCommentDate.setText(commentCard.commentDate);
+        txtCCCommentDate.setText(Utility.dateTimeFormat(commentCard.commentDate));
         txtCCContent.setText(commentCard.commentContent);
 
         return convertView;

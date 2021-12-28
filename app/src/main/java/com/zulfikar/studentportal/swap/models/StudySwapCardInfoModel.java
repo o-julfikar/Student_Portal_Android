@@ -62,7 +62,7 @@ public class StudySwapCardInfoModel {
         return cards;
     }
 
-    private static class StudySwapCardModel {
+    public static class StudySwapCardModel {
         private int id;
         @SerializedName("teacher_bracu_id")
         private int teacherBracuId;

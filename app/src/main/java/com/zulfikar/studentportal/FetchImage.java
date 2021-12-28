@@ -3,6 +3,8 @@ package com.zulfikar.studentportal;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.util.Log;
+
 import com.google.android.material.imageview.ShapeableImageView;
 import java.io.InputStream;
 import java.net.URL;
@@ -22,17 +24,23 @@ public class FetchImage extends Thread {
 
     @Override
     public void run() {
-        try {
-            InputStream inputStream = new URL(imageURL).openStream();
-            bitmap = BitmapFactory.decodeStream(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (imageURL != null && imageURL.length() > 0) {
+            try {
+                InputStream inputStream = new URL(imageURL).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         handler.post(new Runnable() {
             @Override
             public void run() {
-                shapeableImageView.setImageBitmap(bitmap);
+                if (bitmap == null) {
+                    shapeableImageView.setImageResource(R.drawable.userphoto);
+                } else {
+                    shapeableImageView.setImageBitmap(bitmap);
+                }
             }
         });
     }

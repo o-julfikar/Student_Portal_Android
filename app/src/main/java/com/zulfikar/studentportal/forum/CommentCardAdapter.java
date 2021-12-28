@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.Utility;
 
 public class CommentCardAdapter extends RecyclerView.Adapter<CommentCardAdapter.CommentCardViewHolder> {
 
@@ -42,7 +43,7 @@ public class CommentCardAdapter extends RecyclerView.Adapter<CommentCardAdapter.
     public void onBindViewHolder(@NonNull CommentCardViewHolder holder, int position) {
         new FetchImage(holder.imgCCUserPhoto, commentCards[position].authorPhoto, commentCardHandler);
         holder.txtCCUserName.setText(commentCards[position].authorName);
-        holder.txtCCCommentDate.setText(commentCards[position].commentDate);
+        holder.txtCCCommentDate.setText(Utility.dateTimeFormat(commentCards[position].commentDate));
         holder.txtCCContent.setText(commentCards[position].commentContent);
     }
 

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Post {
     @SerializedName("post_id")
@@ -54,6 +55,7 @@ public class Post {
     }
 
     public String getPostCourse() {
+        if (postCourse == null) return "";
         return postCourse;
     }
 
@@ -66,6 +68,7 @@ public class Post {
     }
 
     public String getPostSemester() {
+        if (postSemester == null) return "";
         return postSemester;
     }
 
@@ -73,7 +76,21 @@ public class Post {
         return postReactions;
     }
 
+    public String getPostReactionsCount() {
+        if (postReactions == null || !postReactions.containsKey("count")) return "0";
+        return String.valueOf((int) Double.parseDouble(Objects.requireNonNull(
+                postReactions.getOrDefault("count", ""))
+                .toString()));
+    }
+
     public HashMap<String, Object> getPostComments() {
         return postComments;
+    }
+
+    public String getPostCommentsCount() {
+        if (postComments == null || !postComments.containsKey("count")) return "0";
+        return String.valueOf((int) Double.parseDouble(Objects.requireNonNull(
+                postComments.getOrDefault("count", ""))
+                .toString()));
     }
 }

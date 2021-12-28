@@ -20,10 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
+import com.zulfikar.studentportal.Utility;
 import com.zulfikar.studentportal.account.ProfileFragment;
 import com.zulfikar.studentportal.account.ProfileHeaderFragment;
 import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
 import com.zulfikar.studentportal.api.Client;
+import com.zulfikar.studentportal.forum.models.Post;
 import com.zulfikar.studentportal.forum.models.PostComments;
 
 import retrofit2.Call;
@@ -57,7 +59,7 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
         holder.txtPCUserName.setText(postCards[position].authorName);
         holder.txtPCPostCourse.setText(postCards[position].courseCode);
         holder.txtPCPostSemester.setText(postCards[position].semesterNameYear);
-        holder.txtPCDate.setText(postCards[position].postDate);
+        holder.txtPCDate.setText(Utility.dateTimeFormat(postCards[position].postDate));
         holder.txtPCContent.setText(postCards[position].postContent);
         holder.txtPCReactionCount.setText(postCards[position].reactionsCount);
         holder.txtPCCommentCount.setText(postCards[position].commentsCount);
@@ -126,6 +128,13 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
             });
         });
 
+        holder.itemView.setOnClickListener(v -> {
+            PostFragment postFragment = PostFragment.getInstance(postId);
+            ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(
+                    R.id.mainFragmentContainer,
+                    postFragment).commit();
+        });
+
         refreshComments(postId, holder, jsonPlaceHolderApi);
     }
 
@@ -146,7 +155,7 @@ public class PostCardAdapter extends RecyclerView.Adapter<PostCardAdapter.PostCa
                                 postComment.getAuthor_name(),
                                 postComment.getAuthor_photo(),
                                 postComment.getContent(),
-                                postComment.getDate_created().toString()
+                                postComment.getDate_created()
                         );
                         holder.linearLayoutCommentCards.addView(
                                 commentCard.getView(

@@ -16,15 +16,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zulfikar.studentportal.Assets;
 import com.zulfikar.studentportal.R;
 import com.zulfikar.studentportal.account.SessionManager;
 import com.zulfikar.studentportal.api.Client;
 import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
 import com.zulfikar.studentportal.swap.adapters.UserOffersAdapter;
 import com.zulfikar.studentportal.swap.adapters.UserPrefersAdapter;
-import com.zulfikar.studentportal.swap.models.Course;
 import com.zulfikar.studentportal.swap.models.CourseSection;
+import com.zulfikar.studentportal.swap.models.SecSwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.UserOffers;
 import com.zulfikar.studentportal.swap.models.UserPrefers;
 
@@ -211,11 +210,12 @@ public class SectionSwapOptionsFragment extends Fragment {
     private String getCboText(Spinner spinner) {
         Object selectedItem = spinner.getSelectedItem();
         if (selectedItem instanceof String) return (String) selectedItem;
-        else if (selectedItem instanceof TextView) return ((TextView) spinner.getSelectedItem()).getText().toString();
+        else if (selectedItem instanceof TextView)
+            return ((TextView) spinner.getSelectedItem()).getText().toString();
         return "";
     }
 
-    private boolean verifySelection(String msg, Spinner ...spinners) {
+    private boolean verifySelection(String msg, Spinner... spinners) {
         for (Spinner spinner : spinners) {
             if (spinner.getSelectedItemPosition() == 0) {
                 showToast(msg);
@@ -373,19 +373,112 @@ public class SectionSwapOptionsFragment extends Fragment {
     }
 
     public void btnSectionFindOnClick() {
-        SessionManager.auth(getContext());
-        ArrayList<SectionSwapCard> swapCards = new ArrayList<>();
-        swapCards.add(new SectionSwapCard(0, 1, 0, 0, "Mohammad Zulfikar Ali Mahbub", Assets.defaultUserphoto, "G M Sohanur Rahman", Assets.defaultUserphoto, "CSE110", 2));
-        swapCards.add(new SectionSwapCard(1, 2, 1, 1, "G M Sohanur Rahman", Assets.defaultUserphoto, "Prioty Saha Tonny", Assets.defaultUserphoto, "CSE421", 7));
-        swapCards.add(new SectionSwapCard(2, 3, 2, 2, "Prioty Saha Tonny", Assets.defaultUserphoto, "Md. Imtiyaz Bhuiyan", Assets.defaultUserphoto, "CSE341", 9));
-        swapCards.add(new SectionSwapCard(3, 0, 3, 3, "Md. Imtiyaz Bhuiyan", Assets.defaultUserphoto, "Mohammad Zulfikar Ali Mahbub", Assets.defaultUserphoto, "CSE425", 1));
-
-        SectionSwapCardAdapter sectionSwapCardAdapter = new SectionSwapCardAdapter(getContext(), swapCards);
-
-//        Fragment swapResultFragment = SwapResultFragment.newInstance(sectionSwapCardAdapter);
-
         btnSectionFind.setOnClickListener(v -> {
-//            SectionSwapOptionsFragment.this.requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.swapFragmentContainer, swapResultFragment).commit()
+            SessionManager.auth(getContext());
+            if (!verifySelection("Please select a preferred section first.", cboSection)) return;
+            String[] courseAndSection = getCboText(cboSection).split("( )+");
+            if (courseAndSection.length == 2) {
+                String course = courseAndSection[0];
+                String section = courseAndSection[1].replaceAll("[^0-9]", "");
+                UserPrefers userPrefer = new UserPrefers(course, section);
+                Call<Object> postSecSwapRequestCall = jsonPlaceHolderApi.postSecSwapRequest(userPrefer);
+                postSecSwapRequestCall.enqueue(new Callback<Object>() {
+                    @Override
+                    public void onResponse(Call<Object> call, Response<Object> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            if (response.body() instanceof Integer ||
+                                    response.body() instanceof Double) {
+                                int secSwapReqId = -1;
+                                if (response.body() instanceof Double) {
+                                    secSwapReqId = ((Double) response.body()).intValue();
+                                } else {
+                                    secSwapReqId = (int) response.body();
+                                }
+                                loadOffers();
+                                loadPrefers();
+                                Call<SecSwapCardInfoModel> secSwapCardInfoModelCall =
+                                        jsonPlaceHolderApi.getSecSwapCardInfo(secSwapReqId);
+                                secSwapCardInfoModelCall
+                                        .enqueue(new Callback<SecSwapCardInfoModel>() {
+                                            @Override
+                                            public void onResponse(Call<SecSwapCardInfoModel> call,
+                                                                   Response<SecSwapCardInfoModel> response
+                                            ) {
+                                                if (response.isSuccessful() &&
+                                                        response.body() != null) {
+                                                    SecSwapCardInfoModel secSwapCardInfoModel =
+                                                            response.body();
+                                                    ArrayList<SectionSwapCard> sectionSwapCards =
+                                                            new ArrayList<>();
+                                                    for (SecSwapCardInfoModel
+                                                            .SecSwapCardModel cardModel :
+                                                            secSwapCardInfoModel.getCards()) {
+                                                        sectionSwapCards.add(new SectionSwapCard(
+                                                                cardModel.getProviderBracuId(),
+                                                                cardModel.getRecipientBracuId(),
+                                                                -1,
+                                                                -1,
+                                                                cardModel.getProviderName(),
+                                                                cardModel.getProviderPhoto(),
+                                                                cardModel.getRecipientName(),
+                                                                cardModel.getRecipientPhoto(),
+                                                                cardModel.getCourseCode(),
+                                                                cardModel.getSectionNumber()
+                                                        ));
+                                                    }
+                                                    SectionSwapCardAdapter sectionSwapCardAdapter = new SectionSwapCardAdapter(
+                                                            getContext(),
+                                                            sectionSwapCards
+                                                    );
+                                                    Fragment swapResultFragment = SwapResultFragment.newInstance(
+                                                            sectionSwapCardAdapter,
+                                                            secSwapCardInfoModel.getRequestId(),
+                                                            secSwapCardInfoModel.getCreatorBracuId(),
+                                                            secSwapCardInfoModel.getCreatorName(),
+                                                            secSwapCardInfoModel.getCreatorPhoto(),
+                                                            secSwapCardInfoModel.getDateCreated(),
+                                                            secSwapCardInfoModel.getTotalSwaps(),
+                                                            secSwapCardInfoModel.getUserAccepted(),
+                                                            secSwapCardInfoModel.getRequestStatus(),
+                                                            SwapResultFragment.SECTION_SWAP
+                                                    );
+                                                    SectionSwapOptionsFragment.this
+                                                            .requireActivity()
+                                                            .getSupportFragmentManager()
+                                                            .beginTransaction()
+                                                            .replace(
+                                                                    R.id.mainFragmentContainer,
+                                                                    swapResultFragment)
+                                                            .commit();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<SecSwapCardInfoModel> call,
+                                                                  Throwable t) {
+
+                                            }
+                                        });
+                            } else if (response.body() instanceof Boolean) {
+                                if (!((Boolean) response.body())) {
+                                    showToast("Unfortunately, we could not find a " +
+                                            "swap matching your requirement at the moment." +
+                                            " Please try again later.");
+                                }
+                            }
+                        } else {
+                            showToast("Failed to submit the section swap request at the " +
+                                    "moment. Please try again later.");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Object> call, Throwable t) {
+
+                    }
+                });
+            }
         });
     }
 }

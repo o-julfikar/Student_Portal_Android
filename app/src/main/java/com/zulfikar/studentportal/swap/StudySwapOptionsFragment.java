@@ -1,11 +1,6 @@
 package com.zulfikar.studentportal.swap;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zulfikar.studentportal.Assets;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.zulfikar.studentportal.R;
 import com.zulfikar.studentportal.account.SessionManager;
 import com.zulfikar.studentportal.api.Client;
@@ -23,12 +21,12 @@ import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
 import com.zulfikar.studentportal.swap.adapters.UserLearnsAdapter;
 import com.zulfikar.studentportal.swap.adapters.UserStudySlotsAdapter;
 import com.zulfikar.studentportal.swap.adapters.UserTeachesAdapter;
+import com.zulfikar.studentportal.swap.models.StudySwapCardInfoModel;
 import com.zulfikar.studentportal.swap.models.UserLearns;
 import com.zulfikar.studentportal.swap.models.UserStudySlots;
 import com.zulfikar.studentportal.swap.models.UserTeaches;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -137,7 +135,8 @@ public class StudySwapOptionsFragment extends Fragment {
         });
 
         btnSlotAdd.setOnClickListener(v -> {
-            if (!verifySelection("Select slot day and time first.", cboSlotDay, cboSlotTime)) return;
+            if (!verifySelection("Select slot day and time first.", cboSlotDay, cboSlotTime))
+                return;
             UserStudySlots userStudySlot = new UserStudySlots(
                     getCboText(cboSlotDay), getCboText(cboSlotTime)
             );
@@ -171,17 +170,18 @@ public class StudySwapOptionsFragment extends Fragment {
 
         });
 
-        return  rootView;
+        return rootView;
     }
 
     private String getCboText(Spinner spinner) {
         Object selectedItem = spinner.getSelectedItem();
         if (selectedItem instanceof String) return (String) selectedItem;
-        else if (selectedItem instanceof TextView) return ((TextView) spinner.getSelectedItem()).getText().toString();
+        else if (selectedItem instanceof TextView)
+            return ((TextView) spinner.getSelectedItem()).getText().toString();
         return "";
     }
 
-    private boolean verifySelection(String msg, Spinner ...spinners) {
+    private boolean verifySelection(String msg, Spinner... spinners) {
         for (Spinner spinner : spinners) {
             if (spinner.getSelectedItemPosition() == 0) {
                 showToast(msg);
@@ -412,20 +412,102 @@ public class StudySwapOptionsFragment extends Fragment {
 
     private void btnStudyFindOnClick() {
         SessionManager.auth(getContext());
-        ArrayList<StudySwapCard> swapCards = new ArrayList<>();
-        swapCards.add(new StudySwapCard(0, 1, 0, 0, "Mohammad Zulfikar Ali Mahbub", Assets.defaultUserphoto, "G M Sohanur Rahman", Assets.defaultUserphoto, "CSE110", "8:00 AM | MON"));
-        swapCards.add(new StudySwapCard(1, 2, 1, 1, "G M Sohanur Rahman", Assets.defaultUserphoto, "Prioty Saha Tonny", Assets.defaultUserphoto, "CSE421", "9:30 AM | WED"));
-        swapCards.add(new StudySwapCard(2, 3, 2, 2, "Prioty Saha Tonny", Assets.defaultUserphoto, "Md. Imtiyaz Bhuiyan", Assets.defaultUserphoto, "CSE341", "2:00 PM | THU"));
-        swapCards.add(new StudySwapCard(3, 0, 3, 3, "Md. Imtiyaz Bhuiyan", Assets.defaultUserphoto, "Mohammad Zulfikar Ali Mahbub", Assets.defaultUserphoto, "CSE425", "11:00 AM | SAT"));
-
-        StudySwapCardAdapter studySwapCardAdapter = new StudySwapCardAdapter(getContext(), swapCards);
-
-//        Fragment swapResultFragment = SwapResultFragment.newInstance(studySwapCardAdapter);
-
         btnStudyFind.setOnClickListener(v -> {
-        });
-//                StudySwapOptionsFragment.this.requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.swapFragmentContainer, swapResultFragment).commit()
+            if (!verifySelection("Please select a preferred course to learn first.",
+                    cboCourse)) return;
+            UserLearns userLearn = new UserLearns(getCboText(cboCourse));
+            Call<Object> postStudySwapRequestCall = jsonPlaceHolderApi
+                    .postStudySwapRequest(userLearn);
+            postStudySwapRequestCall.enqueue(new Callback<Object>() {
+                @Override
+                public void onResponse(Call<Object> call, Response<Object> response) {
+                    if (response.isSuccessful() && response.body() != null) {
 
+                        if (response.body() instanceof Integer ||
+                                response.body() instanceof Double) {
+                            int studySwapReqId = -1;
+                            if (response.body() instanceof Double) {
+                                studySwapReqId = ((Double) response.body()).intValue();
+                            } else {
+                                studySwapReqId = (int) response.body();
+                            }
+                            loadCourses();
+                            loadLearns();
+                            loadTeaches();
+                            loadLearns();
+                            loadSlots();
+                            loadSlotDaysTimes();
+                            JsonPlaceHolderApi jsonPlaceHolderApi = Client.getApi(getContext());
+                            Call<StudySwapCardInfoModel> studySwapCardInfoModelCall = jsonPlaceHolderApi
+                                    .getStudySwapCardInfo(studySwapReqId);
+                            studySwapCardInfoModelCall.enqueue(new Callback<StudySwapCardInfoModel>() {
+                                @Override
+                                public void onResponse(Call<StudySwapCardInfoModel> call, Response<StudySwapCardInfoModel> response) {
+                                    if (response.isSuccessful() && response.body() != null) {
+                                        StudySwapCardInfoModel studySwapCardInfoModel = response.body();
+                                        ArrayList<StudySwapCard> studySwapCards = new ArrayList<>();
+                                        for (StudySwapCardInfoModel.StudySwapCardModel studySwapCardModel : studySwapCardInfoModel.getCards()) {
+                                            studySwapCards.add(new StudySwapCard(
+                                                    studySwapCardModel.getTeacherBracuId(),
+                                                    studySwapCardModel.getLearnerBracuId(),
+                                                    -1,
+                                                    -1,
+                                                    studySwapCardModel.getTeacherName(),
+                                                    studySwapCardModel.getTeacherPhoto(),
+                                                    studySwapCardModel.getLearnerName(),
+                                                    studySwapCardModel.getLearnerPhoto(),
+                                                    studySwapCardModel.getCourseCode(),
+                                                    studySwapCardModel.getStudySlot()
+                                            ));
+                                        }
+                                        StudySwapCardAdapter studySwapCardAdapter = new StudySwapCardAdapter(
+                                                getContext(),
+                                                studySwapCards
+                                        );
+                                        Fragment swapResultFragment = SwapResultFragment.newInstance(
+                                                studySwapCardAdapter,
+                                                studySwapCardInfoModel.getRequestId(),
+                                                studySwapCardInfoModel.getCreatorBracuId(),
+                                                studySwapCardInfoModel.getCreatorName(),
+                                                studySwapCardInfoModel.getCreatorPhoto(),
+                                                studySwapCardInfoModel.getDateCreated(),
+                                                studySwapCardInfoModel.getTotalSwaps(),
+                                                studySwapCardInfoModel.getUserAccepted(),
+                                                studySwapCardInfoModel.getRequestStatus(),
+                                                SwapResultFragment.STUDY_SWAP
+                                        );
+                                        requireActivity()
+                                                .getSupportFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.mainFragmentContainer, swapResultFragment)
+                                                .commit();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<StudySwapCardInfoModel> call, Throwable t) {
+
+                                }
+                            });
+                        } else if (response.body() instanceof Boolean) {
+                            if (!((Boolean) response.body())) {
+                                showToast("Unfortunately, we could not find a " +
+                                        "swap matching your requirement at the moment." +
+                                        " Please try again later.");
+                            }
+                        }
+                    } else {
+                        showToast("Failed to submit the study swap request at the " +
+                                "moment. Please try again later.");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Object> call, Throwable t) {
+
+                }
+            });
+        });
     }
 
 }

@@ -1,9 +1,10 @@
 package com.zulfikar.studentportal.api;
 
 public class URL {
-    public static final String baseURL = "http://192.168.9.48:8000/";
+//    public static final String baseURL = "http://192.168.9.48:8000/";
 //    public static final String baseURL = "http://10.0.2.2:8000/";
 //    public static final String baseURL = "https://fa6817fac791c7.localhost.run/";
+    public static final String baseURL = "https://68bd-223-29-215-10.ngrok.io/";
     public static final String auth = "user/auth/";
     public static final String identifyUser = "user/identify/";
     public static final String loginUser = "user/login/";
@@ -20,6 +21,7 @@ public class URL {
     public static final String createPost = "forum/post/create/";
     public static final String getPost = "forum/post/get/";
     public static final String getPostByUser = "forum/post/get/{bracu_id}";
+    public static final String getPostById = "forum/post/{post_id}";
     public static final String createComment = "forum/post/comment/create/";
 
     // Forum - Post
@@ -62,10 +64,16 @@ public class URL {
     // Swap - Section Swap
     public static final String getSecSwapRequests = "swap/section/get";
     public static final String getSecSwapRequestInfo = "swap/section/get/{sec_swap_request_id}";
+    public static final String postSecSwapRequest = "swap/section/post";
+    public static final String postSecSwapRequestAction = "swap/section/action/post/" +
+            "{sec_swap_request_id}";
 
     // Swap - Study Swap
     public static final String getStudySwapRequests = "swap/study/get";
     public static final String getStudySwapRequestInfo = "swap/study/get/{study_swap_request_id}";
+    public static final String postStudySwapRequest = "swap/study/post";
+    public static final String postStudySwapRequestAction = "swap/study/action/post/" +
+            "{study_swap_request_id}";
 
     // Notification
     public static final String getNotifications = "notification/get";

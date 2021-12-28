@@ -2,10 +2,13 @@ package com.zulfikar.studentportal.forum;
 
 import com.zulfikar.studentportal.Assets;
 
+import java.util.Date;
+
 public class PostCard {
     public final int authorId, postId, courseId, semesterId;
-    public final String authorName, authorPhoto, courseCode, semesterNameYear, postContent, postDate,
+    public final String authorName, authorPhoto, courseCode, semesterNameYear, postContent,
             commentsCount, reactionsCount;
+    public Date postDate;
 //    public final CommentCard[] commentCards;
 
 //    public PostCard (int postId, int authorId, int courseId, int semesterId, String authorName,
@@ -15,7 +18,7 @@ public class PostCard {
 
     public PostCard (int postId, int authorId, int courseId, int semesterId, String authorName,
                      String authorPhoto, String courseCode, String semesterNameYear,
-                     String postContent, String postDate, String reactionsCount,
+                     String postContent, Date postDate, String reactionsCount,
                      String commentsCount) {
         this.postId = postId;
         this.authorId = authorId;

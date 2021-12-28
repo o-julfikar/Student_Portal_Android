@@ -136,7 +136,7 @@ public class ProfileFragment extends Fragment {
                                                     post.getAuthorName(), post.getAuthorPhoto(),
                                                     post.getPostCourse(), post.getPostSemester(),
                                                     post.getPostContent(),
-                                                    post.getDateCreated().toString(),
+                                                    post.getDateCreated(),
                                                     String.valueOf((int) Double.parseDouble(Objects.requireNonNull(post.getPostReactions().get("count")).toString())),
                                                     String.valueOf((int) Double.parseDouble(Objects.requireNonNull(post.getPostComments().get("count")).toString()))
                                             );

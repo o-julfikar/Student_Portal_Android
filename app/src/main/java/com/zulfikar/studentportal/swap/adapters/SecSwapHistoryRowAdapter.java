@@ -35,6 +35,7 @@ import retrofit2.Response;
 public class SecSwapHistoryRowAdapter extends RecyclerView.Adapter<SecSwapHistoryRowAdapter.SecSwapHistoryRowViewHolder> {
 
     boolean loading;
+    ArrayList<SecSwapRequest> secSwapRequests;
     Context context;
     SecSwapHistoryFragment secSwapHistoryFragment;
 
@@ -45,8 +46,6 @@ public class SecSwapHistoryRowAdapter extends RecyclerView.Adapter<SecSwapHistor
         this.secSwapRequests = secSwapRequests;
         this.secSwapHistoryFragment = secSwapHistoryFragment;
     }
-
-    ArrayList<SecSwapRequest> secSwapRequests;
 
     @NonNull
     @Override
@@ -109,7 +108,8 @@ public class SecSwapHistoryRowAdapter extends RecyclerView.Adapter<SecSwapHistor
                                 secSwapCardInfoModel.getDateCreated(),
                                 secSwapCardInfoModel.getTotalSwaps(),
                                 secSwapCardInfoModel.getUserAccepted(),
-                                secSwapCardInfoModel.getRequestStatus()
+                                secSwapCardInfoModel.getRequestStatus(),
+                                SwapResultFragment.SECTION_SWAP
                         );
                         secSwapHistoryFragment.requireActivity().getSupportFragmentManager()
                                 .beginTransaction()

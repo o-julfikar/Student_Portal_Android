@@ -19,6 +19,7 @@ import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
 import com.zulfikar.studentportal.forum.models.Post;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -52,10 +53,11 @@ public class NewPostFragment extends Fragment {
         enrolledCoursesCall.enqueue(new Callback<List<Map<String, String>>>() {
             @Override
             public void onResponse(Call<List<Map<String, String>>> call, Response<List<Map<String, String>>> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response.body() != null) {
                     List<Map<String, String>> enrolledCoursesResponse = response.body();
-                    assert enrolledCoursesResponse != null;
-                    ArrayList<String> enrolledCourses = new ArrayList<>();
+                    ArrayList<String> enrolledCourses = new ArrayList<>(
+                            Collections.singletonList("Select a course")
+                    );
                     for (Map<String, String> enrolledCourse : enrolledCoursesResponse) {
                         enrolledCourses.add(enrolledCourse.get("course") + " - " + enrolledCourse.get("semester"));
                     }

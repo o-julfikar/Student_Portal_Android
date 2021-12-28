@@ -1,9 +1,6 @@
 package com.zulfikar.studentportal.notification;
 
-import static java.text.DateFormat.getDateInstance;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,35 +9,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zulfikar.studentportal.Assets;
 import com.zulfikar.studentportal.R;
 import com.zulfikar.studentportal.account.SessionManager;
 import com.zulfikar.studentportal.api.Client;
 import com.zulfikar.studentportal.api.JsonPlaceHolderApi;
 import com.zulfikar.studentportal.notification.models.NotificationGroup;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NotificationFragment extends Fragment {
-
     RecyclerView rvNotifications;
     View rootView;
     String TAG = "NotificationFragment";
@@ -70,10 +52,20 @@ public class NotificationFragment extends Fragment {
                             for (NotificationGroup.Notification notification : notificationGroup.getNotifications()) {
                                 notificationCards.add(new NotificationCard(
                                         notification.getId(),
+                                        notification.getSenderBracuId(),
+                                        notification.getPostId(),
+                                        notification.getCommentId(),
+                                        notification.getCourseId(),
+                                        notification.getInstructorId(),
+                                        notification.getSecSwapRequestId(),
+                                        notification.getStudySwapRequestId(),
                                         notification.getDateCreated(),
                                         notification.getDateRead(),
                                         notification.getNotificationContent(),
-                                        notification.getSenderPhoto()
+                                        notification.getSenderPhoto(),
+                                        notification.getNotiType(),
+                                        notification.getReactionType(),
+                                        requireActivity()
                                 ));
                             }
                             notificationCardGroups.add(new NotificationCardGroup(
