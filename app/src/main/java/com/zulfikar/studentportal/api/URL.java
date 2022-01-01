@@ -4,7 +4,7 @@ public class URL {
 //    public static final String baseURL = "http://192.168.9.48:8000/";
 //    public static final String baseURL = "http://10.0.2.2:8000/";
 //    public static final String baseURL = "https://fa6817fac791c7.localhost.run/";
-    public static final String baseURL = "https://68bd-223-29-215-10.ngrok.io/";
+    public static final String baseURL = "https://studentportaldjango.o-julfikar.repl.co/";
     public static final String auth = "user/auth/";
     public static final String identifyUser = "user/identify/";
     public static final String loginUser = "user/login/";
@@ -74,6 +74,17 @@ public class URL {
     public static final String postStudySwapRequest = "swap/study/post";
     public static final String postStudySwapRequestAction = "swap/study/action/post/" +
             "{study_swap_request_id}";
+
+    // Review
+    public static final String postInstructor = "review/post-instructor";
+    public static final String getInstructorInfo = "review/get-instructor-info/{initial}";
+    public static final String getInstructorSneakCard = "review/get-instructor-sneak-card/{initial}";
+    public static final String getInstructorInitials = "review/get-instructor-initials";
+    public static final String getInstructorCourses = "review/get-instructor-courses/{initial}";
+
+    public static final String postReview = "review/post-review";
+    public static final String getReview = "review/get-review/{initial}";
+
 
     // Notification
     public static final String getNotifications = "notification/get";

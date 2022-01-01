@@ -14,4 +14,8 @@ public class SneakReviewCard {
         this.instructorPhoto = instructorPhoto;
         this.sneakCards = sneakCards;
     }
+
+    public SneakReviewCard(String instructorInitial) {
+        this.instructorInitial = instructorInitial;
+    }
 }

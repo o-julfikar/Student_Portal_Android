@@ -9,6 +9,8 @@ import com.zulfikar.studentportal.forum.models.Post;
 import com.zulfikar.studentportal.forum.models.PostComments;
 import com.zulfikar.studentportal.forum.models.PostReactions;
 import com.zulfikar.studentportal.notification.models.NotificationGroup;
+import com.zulfikar.studentportal.review.models.Instructor;
+import com.zulfikar.studentportal.review.models.Review;
 import com.zulfikar.studentportal.swap.models.Course;
 import com.zulfikar.studentportal.swap.models.CourseSection;
 import com.zulfikar.studentportal.swap.models.SecSwapCardInfoModel;
@@ -62,6 +64,21 @@ public interface JsonPlaceHolderApi {
 
     @GET(URL.getReactions)
     Call<PostReactions> getReactions(@Path("post_id") int post_id);
+
+    @GET(URL.getInstructorInfo)
+    Call<Object> getInstructorInfo(@Path("initial") String instructorInitial);
+
+    @GET(URL.getInstructorSneakCard)
+    Call<Object> getInstructorSneakCard(@Path("initial") String instructorInitial);
+
+    @GET(URL.getInstructorInitials)
+    Call<Object> getInstructorInitials();
+
+    @GET(URL.getInstructorCourses)
+    Call<Object> getInstructorCourses(@Path("initial") String instructorInitial);
+
+    @GET(URL.getReview)
+    Call<Object> getReview(@Path("initial") String instructorInitial);
 
     @GET(URL.getCourse)
     Call<List<String>> getCourse();
@@ -169,4 +186,10 @@ public interface JsonPlaceHolderApi {
     @POST(URL.postStudySwapRequestAction)
     Call<Boolean> postStudySwapRequestAction(@Path("study_swap_request_id") int studSwapReqId,
                                              @Body SwapActionModel swapActionModel);
+
+    @POST(URL.postInstructor)
+    Call<Integer> postInstructor(@Body Instructor instructor);
+
+    @POST(URL.postReview)
+    Call<Integer> postReview(@Body Review review);
 }
