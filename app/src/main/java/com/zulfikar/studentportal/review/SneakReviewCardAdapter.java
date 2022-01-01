@@ -1,6 +1,8 @@
 package com.zulfikar.studentportal.review;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,9 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.zulfikar.studentportal.DetailReviewHeaderFragment;
 import com.zulfikar.studentportal.FetchImage;
 import com.zulfikar.studentportal.R;
 import com.zulfikar.studentportal.api.Client;
@@ -54,6 +59,11 @@ public class SneakReviewCardAdapter extends RecyclerView.Adapter<SneakReviewCard
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return sneakReviewCards.size();
     }
@@ -82,6 +92,7 @@ public class SneakReviewCardAdapter extends RecyclerView.Adapter<SneakReviewCard
                                 String.join(", ", sneakCardModel.getInstructorInitials())
                         );
 
+                        holder.linLayoutSneakRCSneakCards.removeAllViews();
                         for (SneakCardModel.SneakReviewModel
                                 sneakReviewModel : sneakCardModel.getInstructorReviews()
                         ) {
@@ -96,7 +107,54 @@ public class SneakReviewCardAdapter extends RecyclerView.Adapter<SneakReviewCard
                                     )
                             );
                         }
-                        Log.e("onResponse(...):", response.body().toString());
+
+                        if (sneakCardModel.getInstructorReviewPoints() > 0) {
+                            holder.sneakRCStar1.setColorFilter(
+                                    context.getColor(R.color.yellow_orange)
+                            );
+                        }
+                        if (sneakCardModel.getInstructorReviewPoints() > 1) {
+                            holder.sneakRCStar2.setColorFilter(
+                                    context.getColor(R.color.yellow_orange)
+                            );
+                        }
+                        if (sneakCardModel.getInstructorReviewPoints() > 2) {
+                            holder.sneakRCStar3.setColorFilter(
+                                    context.getColor(R.color.yellow_orange)
+                            );
+                        }
+                        if (sneakCardModel.getInstructorReviewPoints() > 3) {
+                            holder.sneakRCStar4.setColorFilter(
+                                    context.getColor(R.color.yellow_orange)
+                            );
+                        }
+                        if (sneakCardModel.getInstructorReviewPoints() > 4) {
+                            holder.sneakRCStar5.setColorFilter(
+                                    context.getColor(R.color.yellow_orange)
+                            );
+                        }
+
+                        holder.btnSneakRCMore.setOnClickListener(v -> {
+                            openDetailedReview(
+                                    sneakCardModel.getInstructorFullname(),
+                                    sneakCardModel.getInstructorInitials(),
+                                    sneakCardModel.getInstructorPhoto(),
+                                    sneakCardModel.getInstructorReviewPoints(),
+                                    sneakCardModel.getInstructorTotalReviews(),
+                                    false
+                            );
+                        });
+
+                        holder.btnSneakRCReview.setOnClickListener(v -> {
+                            openDetailedReview(
+                                    sneakCardModel.getInstructorFullname(),
+                                    sneakCardModel.getInstructorInitials(),
+                                    sneakCardModel.getInstructorPhoto(),
+                                    sneakCardModel.getInstructorReviewPoints(),
+                                    sneakCardModel.getInstructorTotalReviews(),
+                                    true
+                            );
+                        });
                     }
                 }
             }
@@ -106,6 +164,37 @@ public class SneakReviewCardAdapter extends RecyclerView.Adapter<SneakReviewCard
 
             }
         });
+    }
+
+    private void openDetailedReview(
+            String facultyName, List<String> facultyInitial, String facultyPhoto,
+            double totalReviewPoints, int totalReviews, boolean startWithReviews
+    ) {
+        DetailReviewFragment detailReviewFragment = DetailReviewFragment.createInstance(
+                facultyName,
+                facultyInitial,
+                facultyPhoto,
+                totalReviewPoints,
+                totalReviews,
+                startWithReviews
+        );
+        DetailReviewHeaderFragment detailReviewHeaderFragment = DetailReviewHeaderFragment
+                .createInstance(
+                        detailReviewFragment,
+                        facultyName,
+                        facultyInitial,
+                        facultyPhoto,
+                        totalReviewPoints,
+                        totalReviews
+                );
+        ((AppCompatActivity) context).getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainFragmentContainer, detailReviewFragment)
+                .commit();
+        ((AppCompatActivity) context).getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.headerFragmentContainer, detailReviewHeaderFragment)
+                .commit();
     }
 
     protected static class SneakReviewCardViewHolder extends RecyclerView.ViewHolder {

@@ -20,9 +20,11 @@ public class ReviewCardAdapter extends RecyclerView.Adapter<ReviewCardAdapter.Re
     List<SneakCardModel.SneakReviewModel> sneakReviewModels;
     Context context;
 
-    public ReviewCardAdapter(List<SneakCardModel.SneakReviewModel> sneakReviewModels, Context context) {
-        this.sneakReviewModels = sneakReviewModels;
+    public ReviewCardAdapter(Context context,
+            List<SneakCardModel.SneakReviewModel> sneakReviewModels
+    ) {
         this.context = context;
+        this.sneakReviewModels = sneakReviewModels;
     }
 
     @NonNull
@@ -38,7 +40,19 @@ public class ReviewCardAdapter extends RecyclerView.Adapter<ReviewCardAdapter.Re
         holder.txtReview.setText(sneakReviewModels.get(position).getReviewText());
         double reviewPoints = sneakReviewModels.get(position).getReviewPoints();
         if (reviewPoints > 0) {
-//            holder.star1.setColorFilter(ReSou);
+            holder.star1.setColorFilter(context.getColor(R.color.yellow_orange));
+        }
+        if (reviewPoints > 1) {
+            holder.star2.setColorFilter(context.getColor(R.color.yellow_orange));
+        }
+        if (reviewPoints > 2) {
+            holder.star3.setColorFilter(context.getColor(R.color.yellow_orange));
+        }
+        if (reviewPoints > 3) {
+            holder.star4.setColorFilter(context.getColor(R.color.yellow_orange));
+        }
+        if (reviewPoints > 4) {
+            holder.star5.setColorFilter(context.getColor(R.color.yellow_orange));
         }
     }
 

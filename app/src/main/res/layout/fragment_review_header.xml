@@ -38,7 +38,7 @@
     <Button
         android:id="@+id/txtReviewAddInstructor"
         android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toEndOf="@id/txtReviewSearch"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,8 +46,10 @@
         android:text="@string/add_button_text"
         android:textSize="13sp"
         android:layout_marginStart="5dp"
-        android:background="@drawable/ic_round_button"
         android:textAllCaps="false"
+        android:minHeight="0dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

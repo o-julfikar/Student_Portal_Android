@@ -2,23 +2,27 @@ package com.zulfikar.studentportal.review.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class Instructor {
     @SerializedName("instructor_initial")
-    private String initial;
+    private final String initial;
     @SerializedName("instructor_fullname")
-    private String fullname;
+    private final String fullname;
     @SerializedName("instructor_photo")
-    private String photo;
+    private final String photo;
     @SerializedName("instructor_email")
-    private String email;
+    private final String email;
     @SerializedName("instructor_phone")
-    private String phone;
+    private final String phone;
     @SerializedName("course_code")
-    private String courseCode;
+    private final String courseCode;
     @SerializedName("review_text")
-    private String reviewText;
+    private final String reviewText;
     @SerializedName("review_points")
-    private Double reviewPoints;
+    private final Double reviewPoints;
 
     public Instructor(String initial, String fullname, String photo, String email, String phone, String courseCode, String reviewText, Double reviewPoints) {
         this.initial = initial;

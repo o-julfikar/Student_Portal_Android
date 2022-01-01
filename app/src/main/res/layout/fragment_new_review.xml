@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewReviewFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:windowSoftInputMode="adjustResize"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="400dp"
+            >
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollNewReview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@id/layoutStars"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fillViewport="true"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutStars"
+                >
+
+                <EditText
+                    android:id="@+id/txtNewReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:gravity="top"
+                    android:hint="@string/valuable_feedback"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/default_padding_small"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/layoutStars"
+                    />
+
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/layoutStars"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginVertical="@dimen/default_margin_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollNewReview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+                >
+
+                <ImageView
+                    android:id="@+id/star1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/star_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/star2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/star_2"
+                    />
+
+                <ImageView
+                    android:id="@+id/star3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/star_3"
+                    />
+
+                <ImageView
+                    android:id="@+id/star4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/star_4"
+                    />
+
+                <ImageView
+                    android:id="@+id/star5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/star_5"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutStars"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="1"
+                >
+
+                <EditText
+                    android:id="@+id/txtCourseCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/default_margin_small"
+                    android:layout_toStartOf="@+id/btnSubmit"
+                    android:autofillHints="Course code"
+                    android:hint="@string/course_code"
+                    android:inputType="textCapCharacters" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:layout_marginVertical="@dimen/default_margin_small"
+                    android:text="@string/submit" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

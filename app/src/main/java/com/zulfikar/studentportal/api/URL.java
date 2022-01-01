@@ -1,10 +1,10 @@
 package com.zulfikar.studentportal.api;
 
 public class URL {
-//    public static final String baseURL = "http://192.168.9.48:8000/";
+    public static final String baseURL = "http://192.168.9.48:8000/";
 //    public static final String baseURL = "http://10.0.2.2:8000/";
 //    public static final String baseURL = "https://fa6817fac791c7.localhost.run/";
-    public static final String baseURL = "https://studentportaldjango.o-julfikar.repl.co/";
+//    public static final String baseURL = "https://studentportaldjango.o-julfikar.repl.co/";
     public static final String auth = "user/auth/";
     public static final String identifyUser = "user/identify/";
     public static final String loginUser = "user/login/";

@@ -4,11 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class Review {
     @SerializedName("course_code")
-    private String course_code;
+    private final String course_code;
     @SerializedName("review_text")
-    private String reviewText;
+    private final String reviewText;
     @SerializedName("review_points")
-    private Double reviewPoints;
+    private final Double reviewPoints;
     @SerializedName("instructor_initial")
-    private String initial;
+    private final String initial;
+
+    public Review(String course_code, String reviewText, Double reviewPoints, String initial) {
+        this.course_code = course_code;
+        this.reviewText = reviewText;
+        this.reviewPoints = reviewPoints;
+        this.initial = initial;
+    }
 }

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".AddInstructorFragment"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        >
+
+        <EditText
+            android:id="@+id/txtFacultyInitial"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:autofillHints="Initial"
+            android:background="@drawable/ic_round_edit_text"
+            android:hint="@string/initial"
+            android:inputType="textCapCharacters"
+            android:paddingHorizontal="@dimen/default_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txtFacultyName"
+            app:layout_constraintBottom_toTopOf="@id/txtEmail"
+            />
+
+        <EditText
+            android:id="@+id/txtFacultyName"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:autofillHints="name"
+            android:background="@drawable/ic_round_edit_text"
+            android:hint="@string/full_name_hint"
+            android:layout_marginStart="@dimen/default_margin_small"
+            android:paddingHorizontal="@dimen/default_padding"
+            app:layout_constraintStart_toEndOf="@id/txtFacultyInitial"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/txtFacultyInitial"
+            android:inputType="textPersonName"
+            />
+
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:autofillHints="name"
+            android:background="@drawable/ic_round_edit_text"
+            android:hint="@string/email_label"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:paddingHorizontal="@dimen/default_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtFacultyInitial"
+            app:layout_constraintEnd_toStartOf="@id/imgDisplayPhoto"
+            app:layout_constraintBottom_toTopOf="@id/txtPhone"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:id="@+id/txtPhone"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:autofillHints="name"
+            android:background="@drawable/ic_round_edit_text"
+            android:hint="@string/phone_hint"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:paddingHorizontal="@dimen/default_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEmail"
+            app:layout_constraintEnd_toEndOf="@id/txtEmail"
+            app:layout_constraintBottom_toTopOf="@id/txtCourseCode"
+            android:inputType="phone" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgDisplayPhoto"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginStart="@dimen/default_margin_small"
+            app:layout_constraintStart_toEndOf="@+id/txtEmail"
+            app:layout_constraintTop_toTopOf="@id/txtEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutDisplayPhotoButtons"
+            android:background="@drawable/circle_shadow"
+            android:elevation="20dp"
+            android:src="@drawable/userphoto"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutDisplayPhotoButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/imgDisplayPhoto"
+            app:layout_constraintTop_toBottomOf="@id/imgDisplayPhoto"
+            app:layout_constraintEnd_toEndOf="@id/imgDisplayPhoto"
+            app:layout_constraintBottom_toTopOf="@+id/layoutStars"
+            >
+
+            <TextView
+                android:id="@id/txtChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/sepImgButtons"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/change_button_text"
+                android:textSize="@dimen/inner_card_title_text_size"
+                />
+
+            <View
+                android:id="@id/sepImgButtons"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toRightOf="@+id/txtChange"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/txtRemove"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/Divider.Vertical"
+                />
+
+            <TextView
+                android:id="@+id/txtRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/sepImgButtons"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/remove_button_text"
+                android:textColor="@color/red_bd"
+                android:textSize="@dimen/inner_card_title_text_size"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/txtCourseCode"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:autofillHints="name"
+            android:background="@drawable/ic_round_edit_text"
+            android:hint="@string/course_code_hint"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:paddingHorizontal="@dimen/default_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPhone"
+            app:layout_constraintEnd_toEndOf="@id/txtEmail"
+            app:layout_constraintBottom_toBottomOf="@id/layoutDisplayPhotoButtons"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:id="@+id/layoutStars"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutDisplayPhotoButtons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf=""
+            >
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star"
+                android:layout_weight="1"
+                android:contentDescription="@string/star_1"
+                />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star"
+                android:layout_weight="1"
+                android:contentDescription="@string/star_2"
+                />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star"
+                android:layout_weight="1"
+                android:contentDescription="@string/star_3"
+                />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star"
+                android:layout_weight="1"
+                android:contentDescription="@string/star_4"
+                />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star"
+                android:layout_weight="1"
+                android:contentDescription="@string/star_5"
+                />
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtNewReview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/default_margin_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutStars"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSubmit"
+            android:inputType="textImeMultiLine"
+            android:gravity="top"
+            android:hint="@string/valuable_feedback"
+            android:autofillHints="Review" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNewReview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/submit"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
